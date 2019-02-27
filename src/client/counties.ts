@@ -9,7 +9,7 @@ export async function scrapeCounties(onBatch?: Function): Promise<County[]> {
     const page = await browser.newPage();
     const states = await getStates(page);
     const counties = await getCountiesFromStates(page, states, onBatch);
-    browser.close();
+    await browser.close();
     return counties;
 }
 

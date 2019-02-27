@@ -15,7 +15,7 @@ beforeEach(async () => {
 });
 
 afterEach(async () => {
-    page.close();
+    await page.close();
 });
 
 afterAll(async () => {
