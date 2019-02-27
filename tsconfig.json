@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "sourceMap": true,
+        "target": "es6",
+        "outDir": "dist",
+        "baseUrl": ".",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "paths": {
+            "*": ["node_modules/*"]
+        },
+        "lib": ["esnext", "dom"]
+    },
+    "include": [
+        "src/**/*", "example/models/Mugshot.ts", "example/models/County.ts"
+    ]
+}

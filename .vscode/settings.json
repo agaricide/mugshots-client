@@ -1,0 +1,5 @@
+{
+    "vsicons.associations.folders": [
+        { "icon": "typescript", "extensions": ["types"], "format": "svg" }
+    ]
+}

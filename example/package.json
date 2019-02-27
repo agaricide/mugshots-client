@@ -1,0 +1,21 @@
+{
+  "name": "mugshots-client-example",
+  "version": "1.0.0",
+  "description": "Example of using mugshots-client.",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node index.ts"
+  },
+  "dependencies": {
+    "@types/mongodb": "^3.1.12",
+    "@types/mongoose": "^5.2.19",
+    "@types/dotenv": "^4.0.3",
+    "mongoose": "^5.3.4",
+    "dotenv": "^6.1.0",
+    "reflect-metadata": "^0.1.12",
+    "typegoose": "^5.4.1",
+    "ts-node": "^7.0.1"
+  },
+  "author": "agaricide",
+  "license": "ISC"
+}
