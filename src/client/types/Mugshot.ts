@@ -1,7 +1,7 @@
 export interface Mugshot {
     name: string;
     age: number
-    charges?: string;
+    charge?: string;
     imgUrl?: string;
     state?: string;
     county?: string;

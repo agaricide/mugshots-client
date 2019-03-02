@@ -14,19 +14,15 @@ export async function getMugshotHrefs(page: puppeteer.Page): Promise<string[]> {
 
 export async function getMugshotsFromHrefs(page: puppeteer.Page, hrefs: string[], max: number = 100) {
     const mugshots = [];
-    console.log(max);
     for (const [i, href] of hrefs.entries()) {
-        if (i >= max) {
-            break;
-        }
+        if (i >= max) break;
         await page.goto(href);
         mugshots.push(await scrapeMugshot(page));
-        console.log('Mugshot scraped.');
     }
     return mugshots;
 }
 
-async function scrapeMugshot(page: puppeteer.Page): Promise<Mugshot> {
+export async function scrapeMugshot(page: puppeteer.Page): Promise<Mugshot> {
     const model: Mugshot = await page.evaluate(() => {
         const fieldNames = document.querySelectorAll('[class="name"]');
         const names = Array.from(fieldNames)
@@ -35,13 +31,16 @@ async function scrapeMugshot(page: puppeteer.Page): Promise<Mugshot> {
         const fieldValues = document.querySelectorAll('[class="value"]');
         const values = Array.from(fieldValues).map(f => f.innerHTML);
     
-        const name = window.location.href.split('/').pop()
+        const name = window.location.href
+            .split('/')
+            .pop()
             .replace(/.[0-9]+.html/, '')
-            .replace('-', ' ');
+            .replace(/-/g, ' ');
+
         const imgUrl = document.querySelector('img[class="hidden-narrow"]')
             .getAttribute('src');
         
-        let charges = '';
+        let charge = '';
         let age = 0;
 
         return {
@@ -49,7 +48,7 @@ async function scrapeMugshot(page: puppeteer.Page): Promise<Mugshot> {
             name,
             imgUrl,
             age,
-            charges
+            charge
         };
     });
 

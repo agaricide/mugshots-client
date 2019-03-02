@@ -1,0 +1,13 @@
+{
+    "cases": [
+        {
+            "url": "https://mugshots.com/US-Counties/Minnesota/Sherburne-County-MN/Jeffrey-Thomas-Pendzimas.8788976.html",
+            "expected": {
+                "name": "Jeffrey Thomas Pendzimas",
+                "age": 57,
+                "charge": "O2602 OBSENITY-GM-INDECENT EXPOSURE-TO ADULT",
+                "state": "Sherburne County"
+            }
+        }
+    ]
+}
