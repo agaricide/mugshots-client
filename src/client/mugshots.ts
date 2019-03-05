@@ -3,7 +3,7 @@ import { Mugshot } from './types/Mugshot';
 
 interface StringMap { [key: string]: string };
 
-const parseMugshotFields = (page: Page) => page.evaluate(() => {
+const scrapeFields = (page: Page) => page.evaluate(() => {
   const fields: StringMap = {};
   const keys = Array.from(document.querySelectorAll('.name'))
     .map(el => el.innerHTML)
@@ -15,7 +15,7 @@ const parseMugshotFields = (page: Page) => page.evaluate(() => {
   return fields;
 });
 
-const parseMugshotTable = (page: Page) => page.evaluate(() => {
+const scrapeTable = (page: Page) => page.evaluate(() => {
   const table: StringMap = {};
   const rows = Array.from(document.querySelectorAll('tr'));
 
@@ -27,7 +27,7 @@ const parseMugshotTable = (page: Page) => page.evaluate(() => {
   return table;
 });
 
-const parseMugshotName = (page: Page) => page.evaluate(() => {
+const scrapeName = (page: Page) => page.evaluate(() => {
   return window.location.href
     .split('/')
     .pop()
@@ -35,7 +35,7 @@ const parseMugshotName = (page: Page) => page.evaluate(() => {
     .replace(/-/g, ' ');
 });
 
-const parseMugshotImgUrl = (page: Page) => page.evaluate(() => {
+const scrapeImgUrl = (page: Page) => page.evaluate(() => {
   return document
     .querySelector('img.hidden-narrow')
     .getAttribute('src');
@@ -46,10 +46,10 @@ export async function scrapeMugshot(browser: Browser, url: string): Promise<Mugs
   await page.goto(url);
 
   const [fields, table, name, imgUrl] = await Promise.all([
-    parseMugshotFields(page),
-    parseMugshotTable(page),
-    parseMugshotName(page),
-    parseMugshotImgUrl(page)
+    scrapeFields(page),
+    scrapeTable(page),
+    scrapeName(page),
+    scrapeImgUrl(page)
   ]);
   
   const charge = fields['charge'] || table['charge'];
