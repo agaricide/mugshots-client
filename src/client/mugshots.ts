@@ -7,7 +7,7 @@ const parseMugshotFields = (page: Page): Promise<StringMap> => {
   return page.evaluate(() => {
     const fields: StringMap = {};
     const keys = Array.from(document.querySelectorAll('.name'))
-      .map(f => f.innerHTML)
+      .map(el => el.innerHTML)
       .map(s => s.toLowerCase());
     const values = Array.from(document.querySelectorAll('.value'))
       .map(f => f.innerHTML);
@@ -49,9 +49,9 @@ const parseMugshotImgUrl = (page: Page): Promise<string> => {
   });
 };
 
-export async function scrapeMugshot(browser: Browser, href: string): Promise<Mugshot> {
+export async function scrapeMugshot(browser: Browser, url: string): Promise<Mugshot> {
   const page = await browser.newPage();
-  await page.goto(href);
+  await page.goto(url);
 
   const [fields, table, name, imgUrl] = await Promise.all([
     parseMugshotFields(page),
@@ -64,28 +64,21 @@ export async function scrapeMugshot(browser: Browser, href: string): Promise<Mug
   const age = parseInt(fields['age'], 10);
   await page.close();
 
-  return {
-    url: href,
-    name,
-    imgUrl,
-    age,
-    charge
-  };
+  return { url, name, imgUrl, age, charge };
 }
 
-export async function scrapeMugshots(browser: Browser, hrefs: string[], max: number = 100) {
+export async function scrapeMugshots(browser: Browser, urls: string[], max: number = 100) {
   const mugshots = [];
-  for (const [i, href] of hrefs.entries()) {
+  for (const [i, href] of urls.entries()) {
     if (i === max) break;
     mugshots.push(await scrapeMugshot(browser, href));
   }
-
   return mugshots;
 }
 
-export async function getMugshotHrefs(browser: Browser, href: string): Promise<string[]> {
+export async function getMugshotUrls(browser: Browser, url: string): Promise<string[]> {
   const page = await browser.newPage();
-  await page.goto(href);
+  await page.goto(url);
 
   const hrefs = await page.evaluate(() => {
     const els: NodeListOf<Element> = document.querySelectorAll('a.image-preview');

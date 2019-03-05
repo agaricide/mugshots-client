@@ -16,10 +16,10 @@ afterAll(async (done) => {
   done();
 });
 
-describe('getMugshotHrefs', () => {
+describe('getMugshotUrls', () => {
   it('returns a list of urls w/ a valid mugshot on a page', async (done) => {
     const TEST_COUNTY = 'https://mugshots.com/US-Counties/Alabama/Autauga-County-AL/';
-    const result = await mugshots.getMugshotHrefs(browser, TEST_COUNTY);
+    const result = await mugshots.getMugshotUrls(browser, TEST_COUNTY);
     expect(typeof result).toBe('object');
     expect(typeof result[0]).toBe('string');
     done();
