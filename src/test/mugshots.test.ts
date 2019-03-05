@@ -26,11 +26,11 @@ describe('getMugshotHrefs', () => {
   });
 });
 
-describe('getMugshotsFromHrefs', () => {
+describe('scrapeMugshots', () => {
   it('returns a list of mugshot objects of the length specified', async (done) => {
     // tslint:disable-next-line:max-line-length
     const TEST_MUGSHOT = 'https://mugshots.com/US-Counties/Alabama/Autauga-County-AL/Matthew-Jerald-Sanders.175347488.html';
-    const results = await mugshots.getMugshotsFromHrefs(browser, [TEST_MUGSHOT], 1);
+    const results = await mugshots.scrapeMugshots(browser, [TEST_MUGSHOT], 1);
     expect(results.length).toBe(1);
     expect(typeof results[0]).toBe('object');
     done();

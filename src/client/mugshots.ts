@@ -3,30 +3,6 @@ import { Mugshot } from './types/Mugshot';
 
 interface StringMap { [key: string]: string };
 
-export async function getMugshotHrefs(browser: Browser, href: string): Promise<string[]> {
-  const page = await browser.newPage();
-  await page.goto(href);
-  const hrefs = await page.evaluate(() => {
-    const els: NodeListOf<Element> = document.querySelectorAll('a.image-preview');
-    return Array.from(els)
-      .filter(el => !el.querySelector('div.no-image'))
-      .map(el => window.origin + el.getAttribute('href'));
-  });
-  await page.close();
-
-  return hrefs;
-}
-
-export async function getMugshotsFromHrefs(browser: Browser, hrefs: string[], max: number = 100) {
-  const mugshots = [];
-  for (const [i, href] of hrefs.entries()) {
-    if (i === max) break;
-    mugshots.push(await scrapeMugshot(browser, href));
-  }
-
-  return mugshots;
-}
-
 const parseMugshotFields = (page: Page): Promise<StringMap> => {
   return page.evaluate(() => {
     const fields: StringMap = {};
@@ -95,4 +71,29 @@ export async function scrapeMugshot(browser: Browser, href: string): Promise<Mug
     age,
     charge
   };
+}
+
+export async function scrapeMugshots(browser: Browser, hrefs: string[], max: number = 100) {
+  const mugshots = [];
+  for (const [i, href] of hrefs.entries()) {
+    if (i === max) break;
+    mugshots.push(await scrapeMugshot(browser, href));
+  }
+
+  return mugshots;
+}
+
+export async function getMugshotHrefs(browser: Browser, href: string): Promise<string[]> {
+  const page = await browser.newPage();
+  await page.goto(href);
+
+  const hrefs = await page.evaluate(() => {
+    const els: NodeListOf<Element> = document.querySelectorAll('a.image-preview');
+    return Array.from(els)
+      .filter(el => !el.querySelector('div.no-image'))
+      .map(el => window.origin + el.getAttribute('href'));
+  });
+  await page.close();
+
+  return hrefs;
 }
