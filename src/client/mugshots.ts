@@ -16,15 +16,12 @@ const scrapeFields = (page: Page) => page.evaluate(() => {
 });
 
 const scrapeTable = (page: Page) => page.evaluate(() => {
-  const table: StringMap = {};
   const rows = Array.from(document.querySelectorAll('tr'));
-
-  rows.map(tr => [tr.querySelector('th'), tr.querySelector('td')])
+  return rows.map(tr => [tr.querySelector('th'), tr.querySelector('td')])
     .filter(([th, td]) => th && td && th.innerHTML && td.innerHTML)
     .map(([th, td]) => [th.innerHTML, td.innerHTML])
-    .forEach(([key, value]) => table[key.toLowerCase()] = value);
-  
-  return table;
+    .map(([key, value]) => [key.toLowerCase(), value])
+    .reduce<StringMap>((table, [key, value]) => ({ ...table, [key]: value }), {});
 });
 
 const scrapeName = (page: Page) => page.evaluate(() => {
