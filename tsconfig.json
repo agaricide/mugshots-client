@@ -1,20 +1,27 @@
 {
-    "compilerOptions": {
-        "experimentalDecorators": true,
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "noImplicitAny": true,
-        "sourceMap": true,
-        "target": "es6",
-        "outDir": "dist",
-        "baseUrl": ".",
-        "resolveJsonModule": true,
-        "paths": {
-            "*": ["node_modules/*"]
-        },
-        "lib": ["esnext", "dom"]
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "target": "es6",
+    "outDir": "dist",
+    "baseUrl": ".",
+    "resolveJsonModule": true,
+    "paths": {
+      "*": [
+        "node_modules/*"
+      ]
     },
-    "include": [
-        "src/**/*", "example/models/Mugshot.ts", "example/models/County.ts"
+    "lib": [
+      "esnext",
+      "dom"
     ]
+  },
+  "include": [
+    "src/**/*",
+    "example/models/Mugshot.ts",
+    "example/models/County.ts"
+  ]
 }
