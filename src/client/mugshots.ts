@@ -20,7 +20,7 @@ export async function getMugshotHrefs(browser: Browser, href: string): Promise<s
 export async function getMugshotsFromHrefs(browser: Browser, hrefs: string[], max: number = 100) {
   const mugshots = [];
   for (const [i, href] of hrefs.entries()) {
-    if (i >= max) break;
+    if (i === max) break;
     mugshots.push(await scrapeMugshot(browser, href));
   }
 
