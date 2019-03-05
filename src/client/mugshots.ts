@@ -3,7 +3,6 @@ import { Mugshot } from './types/Mugshot';
 
 interface StringMap { [key: string]: string };
 
-// Returns all Mugshot profile urls w/ a picture on a given page
 export async function getMugshotHrefs(browser: Browser, href: string): Promise<string[]> {
   const page = await browser.newPage();
   await page.goto(href);
@@ -69,7 +68,7 @@ const parseMugshotName = (page: Page): Promise<string> => {
 const parseMugshotImgUrl = (page: Page): Promise<string> => {
   return page.evaluate(() => {
     return document
-      .querySelector('img[class="hidden-narrow"]')
+      .querySelector('img.hidden-narrow')
       .getAttribute('src');
   });
 };
@@ -80,7 +79,7 @@ export async function scrapeMugshot(browser: Browser, href: string): Promise<Mug
   const fields = await parseMugshotFields(page);
   const table = await parseMugshotTable(page);
   const name = await parseMugshotName(page);
-  const imgUrl = await parseMugshotImgUrl(page);
+  const imgUrl = await parseMugshotImgUrl(page); 
   const charge = fields['charge'] || table['charge'];
   const age = parseInt(fields['age'], 10);
   await page.close();
