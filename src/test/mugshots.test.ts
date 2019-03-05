@@ -45,7 +45,7 @@ describe('scrapeMugshot', () => {
         expect(mugshot.name).toBe(test.expected.name);
         expect(mugshot.imgUrl).toBe(test.expected.imgUrl);
         expect(mugshot.age).toBe(test.expected.age);
-        // expect(mugshot.charge).toBe(test.expected.charge);
+        expect(mugshot.charge).toBe(test.expected.charge);
         // expect(mugshot.state).toBe(test.expected.state);
         done();
     });

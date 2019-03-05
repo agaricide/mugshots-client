@@ -26,7 +26,7 @@ export async function getMugshotsFromHrefs(browser: puppeteer.Browser, hrefs: st
     return mugshots;
 }
 
-const parseMugshotFields = (page: puppeteer.Page) : Promise<any> => {
+const parseMugshotFields = (page: puppeteer.Page) : Promise<{ [key: string]: string }> => {
     return page.evaluate(() => {
         const fields: { [key: string]: string } = {};
         const keys = Array.from(document.querySelectorAll('.name'))
@@ -35,19 +35,21 @@ const parseMugshotFields = (page: puppeteer.Page) : Promise<any> => {
         const values = Array.from(document.querySelectorAll('.value'))
             .map(f => f.innerHTML);
         keys.forEach((key, i) => fields[key] = values[i]);
+
         return fields;
     });
 };
 
-const parseMugshotTable = (page: puppeteer.Page) : Promise<any> => {
+const parseMugshotTable = (page: puppeteer.Page) : Promise<{ [key: string]: string }> => {
     return page.evaluate(() => {
         const table: { [key: string]: string } = {};
-        const row = Array.from(document.querySelectorAll('tr'));
-        row.forEach(el => {
-            const key = el.querySelector('th').innerHTML;
-            const value = el.querySelector('tr').innerHTML || '';
-            table[key] = value;
-        })
+        const rows = Array.from(document.querySelectorAll('tr'));
+
+        rows.map(el => [el.querySelector('th'), el.querySelector('td')])
+            .filter(([th, td]) => th && td && th.innerHTML && td.innerHTML)
+            .map(([th, td]) => [th.innerHTML, td.innerHTML])
+            .forEach(([key, value]) => table[key.toLowerCase()] = value);
+
         return table;
     });
 }
@@ -74,10 +76,10 @@ export async function scrapeMugshot(browser: puppeteer.Browser, href: string): P
     const page = await browser.newPage();
     await page.goto(href);
     const fields = await parseMugshotFields(page);
-    // const table = await parseMugshotTable(page);
+    const table = await parseMugshotTable(page);
     const name = await parseMugshotName(page);
     const imgUrl = await parseMugshotImgUrl(page);
-    // const charge = fields['charge'] || table['charge'];
+    const charge = fields['charge'] || table['charge'];
     const age = parseInt(fields['age']);
     await page.close();
     return {
@@ -85,6 +87,6 @@ export async function scrapeMugshot(browser: puppeteer.Browser, href: string): P
         name,
         imgUrl,
         age,
-        // charge
+        charge
     };
 }
