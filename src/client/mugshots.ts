@@ -88,7 +88,7 @@ export async function scrapeMugshot(browser: Browser, href: string): Promise<Mug
   await page.close();
 
   return {
-    url: window.location.href,
+    url: href,
     name,
     imgUrl,
     age,
