@@ -76,10 +76,14 @@ const parseMugshotImgUrl = (page: Page): Promise<string> => {
 export async function scrapeMugshot(browser: Browser, href: string): Promise<Mugshot> {
   const page = await browser.newPage();
   await page.goto(href);
-  const fields = await parseMugshotFields(page);
-  const table = await parseMugshotTable(page);
-  const name = await parseMugshotName(page);
-  const imgUrl = await parseMugshotImgUrl(page); 
+
+  const [fields, table, name, imgUrl] = await Promise.all([
+    parseMugshotFields(page),
+    parseMugshotTable(page),
+    parseMugshotName(page),
+    parseMugshotImgUrl(page)
+  ]);
+  
   const charge = fields['charge'] || table['charge'];
   const age = parseInt(fields['age'], 10);
   await page.close();
