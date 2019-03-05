@@ -3,51 +3,43 @@ import { Mugshot } from './types/Mugshot';
 
 interface StringMap { [key: string]: string };
 
-const parseMugshotFields = (page: Page): Promise<StringMap> => {
-  return page.evaluate(() => {
-    const fields: StringMap = {};
-    const keys = Array.from(document.querySelectorAll('.name'))
-      .map(el => el.innerHTML)
-      .map(s => s.toLowerCase());
-    const values = Array.from(document.querySelectorAll('.value'))
-      .map(f => f.innerHTML);
-    keys.forEach((key, i) => fields[key] = values[i]);
+const parseMugshotFields = (page: Page) => page.evaluate(() => {
+  const fields: StringMap = {};
+  const keys = Array.from(document.querySelectorAll('.name'))
+    .map(el => el.innerHTML)
+    .map(s => s.toLowerCase());
+  const values = Array.from(document.querySelectorAll('.value'))
+    .map(f => f.innerHTML);
+  keys.forEach((key, i) => fields[key] = values[i]);
 
-    return fields;
-  });
-};
+  return fields;
+});
 
-const parseMugshotTable = (page: Page): Promise<StringMap> => {
-  return page.evaluate(() => {
-    const table: StringMap = {};
-    const rows = Array.from(document.querySelectorAll('tr'));
+const parseMugshotTable = (page: Page) => page.evaluate(() => {
+  const table: StringMap = {};
+  const rows = Array.from(document.querySelectorAll('tr'));
 
-    rows.map(tr => [tr.querySelector('th'), tr.querySelector('td')])
-      .filter(([th, td]) => th && td && th.innerHTML && td.innerHTML)
-      .map(([th, td]) => [th.innerHTML, td.innerHTML])
-      .forEach(([key, value]) => table[key.toLowerCase()] = value);
+  rows.map(tr => [tr.querySelector('th'), tr.querySelector('td')])
+    .filter(([th, td]) => th && td && th.innerHTML && td.innerHTML)
+    .map(([th, td]) => [th.innerHTML, td.innerHTML])
+    .forEach(([key, value]) => table[key.toLowerCase()] = value);
+  
+  return table;
+});
 
-    return table;
-  });
-};
+const parseMugshotName = (page: Page) => page.evaluate(() => {
+  return window.location.href
+    .split('/')
+    .pop()
+    .replace(/.[0-9]+.html/, '')
+    .replace(/-/g, ' ');
+});
 
-const parseMugshotName = (page: Page): Promise<string> => {
-  return page.evaluate(() => {
-    return window.location.href
-      .split('/')
-      .pop()
-      .replace(/.[0-9]+.html/, '')
-      .replace(/-/g, ' ');
-  });
-};
-
-const parseMugshotImgUrl = (page: Page): Promise<string> => {
-  return page.evaluate(() => {
-    return document
-      .querySelector('img.hidden-narrow')
-      .getAttribute('src');
-  });
-};
+const parseMugshotImgUrl = (page: Page) => page.evaluate(() => {
+  return document
+    .querySelector('img.hidden-narrow')
+    .getAttribute('src');
+});
 
 export async function scrapeMugshot(browser: Browser, url: string): Promise<Mugshot> {
   const page = await browser.newPage();
