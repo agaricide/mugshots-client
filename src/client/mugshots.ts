@@ -1,10 +1,10 @@
-import * as puppeteer from 'puppeteer';
+import { Browser, Page } from 'puppeteer';
 import { Mugshot } from './types/Mugshot';
-import { County } from './types/County';
-import { stringify } from 'querystring';
+
+type StringMap = { [key: string]: string };
 
 // Returns all Mugshot profile urls w/ a picture on a given page
-export async function getMugshotHrefs(browser: puppeteer.Browser, href: string): Promise<string[]> {
+export async function getMugshotHrefs(browser: Browser, href: string): Promise<string[]> {
     const page = await browser.newPage();
     await page.goto(href);
     const hrefs = await page.evaluate(() => {
@@ -17,7 +17,7 @@ export async function getMugshotHrefs(browser: puppeteer.Browser, href: string):
     return hrefs;
 }
 
-export async function getMugshotsFromHrefs(browser: puppeteer.Browser, hrefs: string[], max: number = 100) {
+export async function getMugshotsFromHrefs(browser: Browser, hrefs: string[], max: number = 100) {
     const mugshots = [];
     for (const [i, href] of hrefs.entries()) {
         if (i >= max) break;
@@ -26,9 +26,9 @@ export async function getMugshotsFromHrefs(browser: puppeteer.Browser, hrefs: st
     return mugshots;
 }
 
-const parseMugshotFields = (page: puppeteer.Page) : Promise<{ [key: string]: string }> => {
+const parseMugshotFields = (page: Page) : Promise<StringMap> => {
     return page.evaluate(() => {
-        const fields: { [key: string]: string } = {};
+        const fields: StringMap = {};
         const keys = Array.from(document.querySelectorAll('.name'))
             .map(f => f.innerHTML)
             .map(s => s.toLowerCase());
@@ -40,9 +40,9 @@ const parseMugshotFields = (page: puppeteer.Page) : Promise<{ [key: string]: str
     });
 };
 
-const parseMugshotTable = (page: puppeteer.Page) : Promise<{ [key: string]: string }> => {
+const parseMugshotTable = (page: Page) : Promise<StringMap> => {
     return page.evaluate(() => {
-        const table: { [key: string]: string } = {};
+        const table: StringMap = {};
         const rows = Array.from(document.querySelectorAll('tr'));
 
         rows.map(el => [el.querySelector('th'), el.querySelector('td')])
@@ -54,7 +54,7 @@ const parseMugshotTable = (page: puppeteer.Page) : Promise<{ [key: string]: stri
     });
 }
 
-const parseMugshotName = (page: puppeteer.Page): Promise<string> => {
+const parseMugshotName = (page: Page): Promise<string> => {
     return page.evaluate(() => {
         return window.location.href
         .split('/')
@@ -64,7 +64,7 @@ const parseMugshotName = (page: puppeteer.Page): Promise<string> => {
     });
 };
 
-const parseMugshotImgUrl = (page: puppeteer.Page): Promise<string> => {
+const parseMugshotImgUrl = (page: Page): Promise<string> => {
     return page.evaluate(() => {
         return document
             .querySelector('img[class="hidden-narrow"]')
@@ -72,7 +72,7 @@ const parseMugshotImgUrl = (page: puppeteer.Page): Promise<string> => {
     });
 }
 
-export async function scrapeMugshot(browser: puppeteer.Browser, href: string): Promise<Mugshot> {
+export async function scrapeMugshot(browser: Browser, href: string): Promise<Mugshot> {
     const page = await browser.newPage();
     await page.goto(href);
     const fields = await parseMugshotFields(page);
