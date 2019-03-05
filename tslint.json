@@ -1,5 +1,4 @@
 {
-    "extends": "tslint:recommended",
     "rules": {
       "max-line-length": {
         "options": [
@@ -16,6 +15,9 @@
       "object-literal-sort-keys": false,
       "no-console": false,
       "class-name": false,
+      "indent": [true, "spaces", 2],
+      "arrow-parens": false,
+      "curly": [true, "ignore-same-line"]
     },
     "jsRules": {
       "max-line-length": {

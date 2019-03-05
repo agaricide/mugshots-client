@@ -1,26 +1,26 @@
-import { prop, Typegoose, ModelType, InstanceType } from 'typegoose';
+import { prop, Typegoose } from 'typegoose';
 
 export class Mugshot extends Typegoose {
-    @prop()
-    name: string;
+  @prop()
+  public name: string;
 
-    @prop()
-    age: number;
+  @prop()
+  public age: number;
 
-    @prop()
-    charges?: string;
+  @prop()
+  public charges?: string;
 
-    @prop()
-    imgUrl?: string;
+  @prop()
+  public imgUrl?: string;
 
-    @prop()
-    state: string;
+  @prop()
+  public state: string;
 
-    @prop()
-    county: string;
+  @prop()
+  public county: string;
 
-    @prop()
-    url: string;
+  @prop()
+  public url: string;
 }
 
 export const MugshotModel = new Mugshot().getModelForClass(Mugshot);
