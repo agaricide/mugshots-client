@@ -8,9 +8,9 @@ export async function getMugshotHrefs(browser: Browser, href: string): Promise<s
   const page = await browser.newPage();
   await page.goto(href);
   const hrefs = await page.evaluate(() => {
-    const els: NodeListOf<Element> = document.querySelectorAll('a[class="image-preview"]');
+    const els: NodeListOf<Element> = document.querySelectorAll('a.image-preview');
     return Array.from(els)
-      .filter(el => !el.querySelector('div[class="no-image"]'))
+      .filter(el => !el.querySelector('div.no-image'))
       .map(el => window.origin + el.getAttribute('href'));
   });
   await page.close();
