@@ -49,7 +49,7 @@ const parseMugshotTable = (page: Page): Promise<StringMap> => {
     const table: StringMap = {};
     const rows = Array.from(document.querySelectorAll('tr'));
 
-    rows.map(el => [el.querySelector('th'), el.querySelector('td')])
+    rows.map(tr => [tr.querySelector('th'), tr.querySelector('td')])
       .filter(([th, td]) => th && td && th.innerHTML && td.innerHTML)
       .map(([th, td]) => [th.innerHTML, td.innerHTML])
       .forEach(([key, value]) => table[key.toLowerCase()] = value);
