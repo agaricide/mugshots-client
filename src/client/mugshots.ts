@@ -1,5 +1,3 @@
-/* tslint:disable:no-string-literal */
-
 import { Browser, Page } from 'puppeteer';
 import { Mugshot } from './types/Mugshot';
 
