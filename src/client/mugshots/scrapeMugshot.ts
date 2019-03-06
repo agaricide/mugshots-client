@@ -39,8 +39,7 @@ const scrapeImgUrl = (page: Page) => page.evaluate(() => {
     .getAttribute('src');
 });
 
-export async function scrapeMugshot(browser: Browser, url: string): Promise<Mugshot> {
-  const page = await browser.newPage();
+export async function scrapeMugshot(page: Page, url: string): Promise<Mugshot> {
   await page.goto(url);
 
   const [fields, table, name, imgUrl] = await Promise.all([
@@ -52,7 +51,6 @@ export async function scrapeMugshot(browser: Browser, url: string): Promise<Mugs
   
   const charge = fields['charge'] || table['charge'];
   const age = parseInt(fields['age'], 10);
-  await page.close();
 
   return { url, name, imgUrl, age, charge };
 }
