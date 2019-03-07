@@ -32,7 +32,7 @@ describe('scrapeMugshots', () => {
   it('returns a list of mugshot objects of the length specified', async (done) => {
     // tslint:disable-next-line:max-line-length
     const TEST_MUGSHOT = 'https://mugshots.com/US-Counties/Alabama/Autauga-County-AL/Matthew-Jerald-Sanders.175347488.html';
-    const results = await scrapeMugshots(browser, [TEST_MUGSHOT], 1);
+    const results = await scrapeMugshots(browser, [TEST_MUGSHOT], { count: 1 });
     expect(results.length).toBe(1);
     expect(typeof results[0]).toBe('object');
     done();
@@ -43,7 +43,9 @@ describe('scrapeMugshots', () => {
 describe('scrapeMugshot', () => {
   it(`handles mugshot test case #1 from cases.json`, async (done) => {
     const test = testCases[0];
-    const mugshot = await scrapeMugshot(browser, test.url);
+    const page = await browser.newPage();
+    const mugshot = await scrapeMugshot(page, test.url);
+    await page.close();
     expect(mugshot.name).toBe(test.expected.name);
     expect(mugshot.imgUrl).toBe(test.expected.imgUrl);
     expect(mugshot.age).toBe(test.expected.age);
