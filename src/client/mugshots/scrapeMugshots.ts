@@ -20,13 +20,14 @@ const pageFactory = (browser: Browser) => ({
 export async function scrapeMugshots(browser: Browser, urls: string[], opts: Options = {}) {
   const options = { ...opts, ...defaults };
   const pagePool = pool.createPool(pageFactory(browser), { ...options.pool });
-
-  const mugshots = urls.slice(0, options.count).map(async (url) => {
-    const page = await pagePool.acquire();
-    const mugshot = await scrapeMugshot(page, url);
-    pagePool.release(page);
-    return mugshot;
-  });
+  const mugshots = urls
+    .slice(0, options.count)
+    .map(async (url) => {
+      const page = await pagePool.acquire();
+      const mugshot = await scrapeMugshot(page, url);
+      pagePool.release(page);
+      return mugshot;
+    });
 
   return Promise.all(mugshots);
 }
