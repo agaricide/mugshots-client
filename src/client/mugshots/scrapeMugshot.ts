@@ -4,20 +4,20 @@ import { Mugshot } from '../types/Mugshot';
 interface StringMap { [key: string]: string };
 
 const scrapeFields = (page: Page) => page.evaluate(() => {
-  const fields: StringMap = {};
   const keys = Array.from(document.querySelectorAll('.name'))
     .map(el => el.innerHTML)
     .map(s => s.toLowerCase());
   const values = Array.from(document.querySelectorAll('.value'))
-    .map(f => f.innerHTML);
-  keys.forEach((key, i) => fields[key] = values[i]);
-
-  return fields;
+    .map(el => el.innerHTML);
+  return keys
+    .map((key, i) => [key, values[i]])
+    .reduce<StringMap>((fields, [key, value]) => ({ ...fields, [key]: value }), {});
 });
 
 const scrapeTable = (page: Page) => page.evaluate(() => {
   const rows = Array.from(document.querySelectorAll('tr'));
-  return rows.map(tr => [tr.querySelector('th'), tr.querySelector('td')])
+  return rows
+    .map(tr => [tr.querySelector('th'), tr.querySelector('td')])
     .filter(([th, td]) => th && td && th.innerHTML && td.innerHTML)
     .map(([th, td]) => [th.innerHTML, td.innerHTML])
     .map(([key, value]) => [key.toLowerCase(), value])
