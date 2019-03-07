@@ -1,5 +1,5 @@
 
-import { Browser, Page } from 'puppeteer';
+import { Page } from 'puppeteer';
 import { Mugshot } from '../types/Mugshot';
 
 interface StringMap { [key: string]: string };
