@@ -9,9 +9,7 @@ export interface Options {
 
 const defaults: Options = {
   count: 100,
-  pool: {
-    max: 2
-  }
+  pool: { max: 2 }
 };
 
 const pageFactory = (browser: Browser) => ({
