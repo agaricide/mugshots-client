@@ -38,18 +38,37 @@ const scrapeImgUrl = (page: Page) => page.evaluate(() => {
     .getAttribute('src');
 });
 
+const scrapeState = (page: Page) => page.evaluate(() => {
+  return window.location.href
+    .split('/')
+    .slice(-2, -1)[0]
+    .split('-')
+    .slice(-1)[0];
+});
+
+const scrapeCity = (page: Page) => page.evaluate(() => {
+  return window.location.href
+    .split('/')
+    .slice(-2, -1)[0]
+    .split('-')
+    .slice(0, -1)
+    .join(' ');
+});
+
 export async function scrapeMugshot(page: Page, url: string): Promise<Mugshot> {
   await page.goto(url);
 
-  const [fields, table, name, imgUrl] = await Promise.all([
+  const [fields, table, name, imgUrl, state, city] = await Promise.all([
     scrapeFields(page),
     scrapeTable(page),
     scrapeName(page),
-    scrapeImgUrl(page)
+    scrapeImgUrl(page),
+    scrapeState(page),
+    scrapeCity(page)
   ]);
   
   const charge = fields['charge'] || table['charge'];
   const age = parseInt(fields['age'], 10);
 
-  return { url, name, imgUrl, age, charge };
+  return { url, name, imgUrl, age, charge, city, state };
 }

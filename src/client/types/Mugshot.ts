@@ -4,6 +4,7 @@ export interface Mugshot {
   charge?: string;
   imgUrl?: string;
   state?: string;
+  city?: string;
   county?: string;
   url: string;
 }
