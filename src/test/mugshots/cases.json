@@ -10,6 +10,62 @@
         "city": "Sherburne County",
         "state": "MN"
       }
+    },
+    {
+      "url": "https://mugshots.com/US-Counties/Alabama/Autauga-County-AL/CARLTON-MCCRARY-Jr.39935475.html",
+      "expected": {
+        "name": "CARLTON MCCRARY Jr.",
+        "imgUrl": "https://thumbs.mugshots.com/gallery/images/46/5d/CARLTON-MCCRARY-Jr-mugshot-25530113.400x800.jpg",
+        "age": 28,
+        "charge": "Rape 2nd degree",
+        "city": "Autauga County",
+        "state": "AL"     
+      }
+    },
+    {
+      "url": "https://mugshots.com/US-Counties/Utah/Iron-County-UT/Lucas-Jamil-Mahi.87840019.html",
+      "expected": {
+        "name": "Lucas Jamil Mahi",
+        "imgUrl": "https://thumbs.mugshots.com/gallery/images/5b/5f/Lucas-Jamil-Mahi-mugshot-35439021.400x800.jpg",
+        "age": 0,
+        "charge": "Resisting/Interfering w/Arrest",
+        "city": "Iron County",
+        "state": "UT"     
+      }
+    },
+    {
+      "url": "https://mugshots.com/US-Counties/Minnesota/Sherburne-County-MN/Kevin-Verdie-Sukhu.65288011.html",
+      "expected": {
+        "name": "Kevin Verdie Sukhu",
+        "imgUrl": "https://thumbs.mugshots.com/gallery/images/58/b8/Kevin-Verdie-Sukhu-mugshot-30000283.400x800.jpg",
+        "age": 0,
+        "DOB": "10/20/1990",
+        "charge": "FE-FAILURE TO REGISTER AS PREDATORY OFFENDER",
+        "city": "Sherburne County",
+        "state": "MN"     
+      }
+    },
+    {
+      "url": "https://mugshots.com/US-Counties/Alabama/Franklin-County-AL/Cody-Alan-Payton.171261591.html",
+      "expected": {
+        "name": "Cody Alan Payton",
+        "imgUrl": "https://thumbs.mugshots.com/gallery/images/fa/d5/Cody-Alan-Payton-mugshot-46578846.400x800.jpg",
+        "age":28,
+        "charge": "AGGRAVATED CHILD ABUSE - 2 COUNTS",
+        "city": "Franklin County",
+        "state": "AL"     
+      }
+    },
+    {
+      "url": "https://mugshots.com/US-Counties/New-Mexico/Lincoln-County-NM/Ritchard-Kerry-Johnson.58432500.html",
+      "expected": {
+        "name": "Ritchard Kerry Johnson",
+        "imgUrl": "https://thumbs.mugshots.com/gallery/images/23/fb/Ritchard-Kerry-Johnson-mugshot-28644010.400x800.jpg",
+        "age": 55,
+        "charge": "ATTEMPTED INDECENCY WITH A CHILD",
+        "city": "Lincoln County",
+        "state": "NM"     
+      }
     }
   ]
 }
