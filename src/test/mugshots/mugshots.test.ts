@@ -68,4 +68,18 @@ describe('scrapeMugshot', () => {
     expect(mugshot.state).toBe(test.expected.state);
     done();
   });
+
+  it('handles test case #3: Lucas Jamil Mahi', async (done) => {
+    const test = testCases[2];
+    const page = await browser.newPage();
+    const mugshot = await scrapeMugshot(page, test.url);
+    await page.close();
+    expect(mugshot.name).toBe(test.expected.name);
+    expect(mugshot.imgUrl).toBe(test.expected.imgUrl);
+    expect(mugshot.age).toBe(-1);
+    expect(mugshot.charge).toBe(test.expected.charge);
+    expect(mugshot.city).toBe(test.expected.city);
+    expect(mugshot.state).toBe(test.expected.state);
+    done();
+  });
 });
