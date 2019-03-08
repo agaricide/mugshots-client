@@ -41,8 +41,8 @@ describe('scrapeMugshots', () => {
 
 
 describe('scrapeMugshot', () => {
-  const test = testCases[0];
-  it(`handles mugshot test case #1 (Jeffrey Thomas Pendzimas) from cases.json`, async (done) => {
+  it('handles mugshot test case #1 (Jeffrey Thomas Pendzimas) from cases.json', async (done) => {
+    const test = testCases[0];
     const page = await browser.newPage();
     const mugshot = await scrapeMugshot(page, test.url);
     await page.close();
