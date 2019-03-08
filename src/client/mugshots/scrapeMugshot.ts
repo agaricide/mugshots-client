@@ -70,7 +70,8 @@ export async function scrapeMugshot(page: Page, url: string): Promise<Mugshot> {
   const charge = fields['charge']
     || table['charge']
     || table['sex crime']
-    || table['description'];
+    || table['description']
+    || table['offense description'];
 
   const age = (fields['age']) ? parseInt(fields['age'], 10) : -1;
 
