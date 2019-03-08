@@ -14,7 +14,7 @@
     {
       "url": "https://mugshots.com/US-Counties/Alabama/Autauga-County-AL/CARLTON-MCCRARY-Jr.39935475.html",
       "expected": {
-        "name": "CARLTON MCCRARY Jr.",
+        "name": "CARLTON MCCRARY Jr",
         "imgUrl": "https://thumbs.mugshots.com/gallery/images/46/5d/CARLTON-MCCRARY-Jr-mugshot-25530113.400x800.jpg",
         "age": 28,
         "charge": "Rape 2nd degree",

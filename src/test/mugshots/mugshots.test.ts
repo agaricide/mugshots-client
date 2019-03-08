@@ -41,8 +41,22 @@ describe('scrapeMugshots', () => {
 
 
 describe('scrapeMugshot', () => {
-  it('handles mugshot test case #1 (Jeffrey Thomas Pendzimas) from cases.json', async (done) => {
+  it('handles test case #1: Jeffrey Thomas Pendzimas', async (done) => {
     const test = testCases[0];
+    const page = await browser.newPage();
+    const mugshot = await scrapeMugshot(page, test.url);
+    await page.close();
+    expect(mugshot.name).toBe(test.expected.name);
+    expect(mugshot.imgUrl).toBe(test.expected.imgUrl);
+    expect(mugshot.age).toBe(test.expected.age);
+    expect(mugshot.charge).toBe(test.expected.charge);
+    expect(mugshot.city).toBe(test.expected.city);
+    expect(mugshot.state).toBe(test.expected.state);
+    done();
+  });
+
+  it('handles test case #2: CARLTON MCCRARY Jr.', async (done) => {
+    const test = testCases[1];
     const page = await browser.newPage();
     const mugshot = await scrapeMugshot(page, test.url);
     await page.close();

@@ -67,7 +67,7 @@ export async function scrapeMugshot(page: Page, url: string): Promise<Mugshot> {
     scrapeCity(page)
   ]);
   
-  const charge = fields['charge'] || table['charge'];
+  const charge = fields['charge'] || table['charge'] || table['sex crime'];
   const age = parseInt(fields['age'], 10);
 
   return { url, name, imgUrl, age, charge, city, state };
