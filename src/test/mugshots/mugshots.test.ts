@@ -96,4 +96,32 @@ describe('scrapeMugshot', () => {
     expect(mugshot.state).toBe(test.expected.state);
     done();
   });
+  
+  it('handles test case #5: Cody Alan Payton', async (done) => {
+    const test = testCases[4];
+    const page = await browser.newPage();
+    const mugshot = await scrapeMugshot(page, test.url);
+    await page.close();
+    expect(mugshot.name).toBe(test.expected.name);
+    expect(mugshot.imgUrl).toBe(test.expected.imgUrl);
+    expect(mugshot.age).toBe(test.expected.age);
+    expect(mugshot.charge).toBe(test.expected.charge);
+    expect(mugshot.city).toBe(test.expected.city);
+    expect(mugshot.state).toBe(test.expected.state);
+    done();
+  });
+
+  it('handles test case #6: Ritchard Kerry Johnson', async (done) => {
+    const test = testCases[5];
+    const page = await browser.newPage();
+    const mugshot = await scrapeMugshot(page, test.url);
+    await page.close();
+    expect(mugshot.name).toBe(test.expected.name);
+    expect(mugshot.imgUrl).toBe(test.expected.imgUrl);
+    expect(mugshot.age).toBe(test.expected.age);
+    expect(mugshot.charge).toBe(test.expected.charge);
+    expect(mugshot.city).toBe(test.expected.city);
+    expect(mugshot.state).toBe(test.expected.state);
+    done();
+  });
 });

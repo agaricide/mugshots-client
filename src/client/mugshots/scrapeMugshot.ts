@@ -24,6 +24,14 @@ const scrapeTable = (page: Page) => page.evaluate(() => {
     .reduce<StringMap>((table, [key, value]) => ({ ...table, [key]: value }), {});
 });
 
+const scrapeChargeList = (page: Page) => page.evaluate(() => {
+  const lis = document
+    .querySelector('.fieldvalues')
+    .querySelectorAll('li');
+  return Array.from(lis)
+    .map(li => li.innerHTML);
+});
+
 const scrapeName = (page: Page) => page.evaluate(() => {
   return window.location.href
     .split('/')
@@ -58,20 +66,23 @@ const scrapeCity = (page: Page) => page.evaluate(() => {
 export async function scrapeMugshot(page: Page, url: string): Promise<Mugshot> {
   await page.goto(url);
 
-  const [fields, table, name, imgUrl, state, city] = await Promise.all([
+  const [fields, table, name, imgUrl, state, city, chargeList] = await Promise.all([
     scrapeFields(page),
     scrapeTable(page),
     scrapeName(page),
     scrapeImgUrl(page),
     scrapeState(page),
-    scrapeCity(page)
+    scrapeCity(page),
+    scrapeChargeList(page)
   ]);
   
   const charge = fields['charge']
     || table['charge']
     || table['sex crime']
+    || table['details']
     || table['description']
-    || table['offense description'];
+    || table['offense description']
+    || chargeList[0];
 
   const age = (fields['age']) ? parseInt(fields['age'], 10) : -1;
 
