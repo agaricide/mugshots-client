@@ -30,6 +30,7 @@ const MugshotUrlGenerator = async (browser: Browser, county: County) => {
         await page.goto(next);
         yield urls;
       }
+      page.close();
     }
   };
 };
