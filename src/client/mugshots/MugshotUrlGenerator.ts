@@ -16,7 +16,8 @@ const scrapeNextCountyPage = (page: Page) => page.evaluate(() => {
 });
 
 const is404 = (page: Page) => page.evaluate(() => {
-  return window.location.href.split('/').pop() === 'None' ? true : false;
+  const segment = window.location.href.split('/').pop();
+  return segment === 'None' ? true : false;
 });
 
 const MugshotUrlGenerator = async (browser: Browser, county: County) => {
