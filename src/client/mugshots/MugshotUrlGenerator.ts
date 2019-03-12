@@ -26,8 +26,10 @@ const MugshotUrlGenerator = async (browser: Browser, county: County) => {
   return {
     async *[Symbol.iterator]() {
       while (!await is404(page)) {
-        const next = await scrapeNextCountyPage(page);
-        const urls = await scrapeMugshotUrls(page);
+        const [urls, next] = await Promise.all([
+          scrapeMugshotUrls(page),
+          scrapeNextCountyPage(page)
+        ]);
         await page.goto(next);
         yield urls;
       }
