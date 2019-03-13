@@ -1,6 +1,6 @@
 import * as puppeteer from 'puppeteer';
-import { County } from './types/County';
-import { State } from './types/State';
+import { County } from '../types/County';
+import { State } from '../types/State';
 
 const ORIGIN = 'https://mugshots.com';
 
