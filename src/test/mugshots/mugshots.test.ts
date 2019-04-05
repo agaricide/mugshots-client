@@ -1,7 +1,6 @@
 import * as puppeteer from 'puppeteer';
 import { scrapeMugshot } from '../../client/mugshots/scrapeMugshot';
 import { scrapeMugshots } from '../../client/mugshots/scrapeMugshots';
-import { getMugshotUrls } from '../../client/mugshots/getMugshotUrls';
 import { cases as testCases } from './cases.json';
 import { MugshotUrlIterator, MugshotUrlChunkIterator } from '../../client/mugshots/MugshotUrlIterator';
 import { County } from '../../client/types/County';
@@ -18,16 +17,6 @@ beforeAll(async (done) => {
 afterAll(async (done) => {
   await browser.close();
   done();
-});
-
-describe('getMugshotUrls', () => {
-  it('returns a list of urls w/ a valid mugshot on a page', async (done) => {
-    const TEST_COUNTY = 'https://mugshots.com/US-Counties/Alabama/Autauga-County-AL/';
-    const result = await getMugshotUrls(browser, TEST_COUNTY);
-    expect(typeof result).toBe('object');
-    expect(typeof result[0]).toBe('string');
-    done();
-  });
 });
 
 describe('scrapeMugshots', () => {
