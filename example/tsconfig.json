@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "target": "es2017",
+    "outDir": "dist",
+    "baseUrl": ".",
+    "resolveJsonModule": true,
+    "paths": {
+      "*": [
+        "node_modules/*"
+      ]
+    },
+    "lib": [
+      "esnext",
+      "dom"
+    ]
+  },
+  "include": [
+    "src/**/*",
+    "example/models/Mugshot.ts",
+    "example/models/County.ts"
+  ]
+}

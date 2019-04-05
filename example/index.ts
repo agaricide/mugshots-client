@@ -1,30 +1,32 @@
+import 'reflect-metadata';
 import * as dotenv from 'dotenv';
 import * as mongoose from 'mongoose';
-import { CountyModel, County } from './models/County';
-import { scrapeAllCountyPages } from '../src/index';
+import * as puppeteer from 'puppeteer';
 import { MugshotModel } from './models/Mugshot';
-import { shuffle } from './utils/shuffle';
+import { MugshotUrlChunkIterator, CountyIterator, scrapeMugshots } from '../src/index';
 
 // Set environment variables
 if (process.env.NODE_ENV !== 'production') {
-    dotenv.config();
+  dotenv.config();
 }
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
 
-const cap = 400;
-
 (async () => {
-    console.log('Getting all counties...');
-    const counties = await CountyModel.find();
-    shuffle(counties);
+  console.log('Starting...');
+  const browser = await puppeteer.launch();
+  console.log('Browser launched.');
+  const counties = await CountyIterator(browser);
 
-    for (const [i, county] of counties.entries()) {
-        const scraped = await scrapeAllCountyPages(county, cap);
-        const valids = scraped.filter(mugshot => {
-            return mugshot.charges && !mugshot.charges.toLowerCase().includes('n/a');
-        });
-        console.log(`Chunk ${i}/${cap} completed.`);
-        MugshotModel.insertMany(valids);
+  for await (const county of counties) {
+    console.log(county.name);
+    const mugshotUrls = await MugshotUrlChunkIterator(browser, county);
+    console.log('Created mugshot iterator.')
+    for await (const chunk of mugshotUrls) {
+      console.log(chunk);
+      const mugshots = await scrapeMugshots(browser, chunk, { count: 100 });
+      console.log(mugshots);
+      MugshotModel.insertMany(mugshots);
     }
+  }
 })();
