@@ -20,7 +20,7 @@ const is404 = (page: Page) => page.evaluate(() => {
   return segment === 'None' ? true : false;
 });
 
-const MugshotUrlAsyncIterator = async (browser: Browser, county: County) => {
+const MugshotUrlIterator = async (browser: Browser, county: County) => {
   const page = await browser.newPage();
   await page.goto(county.url);
   return {
@@ -28,8 +28,7 @@ const MugshotUrlAsyncIterator = async (browser: Browser, county: County) => {
       while (!await is404(page)) {
         const urls = await scrapeMugshotUrls(page);
         const next = await scrapeNextCountyPage(page);
-        await page.goto(next);
-
+        if (next) await page.goto(next);
         while (urls.length > 0) {
           yield urls.pop();
         }
@@ -39,4 +38,23 @@ const MugshotUrlAsyncIterator = async (browser: Browser, county: County) => {
   };
 };
 
-export { MugshotUrlAsyncIterator };
+const MugshotUrlChunkIterator = async (browser: Browser, county: County) => {
+  const page = await browser.newPage();
+  await page.goto(county.url);
+  return {
+    async *[Symbol.asyncIterator]() {
+      while (!await is404(page)) {
+        const urls = await scrapeMugshotUrls(page);
+        const next = await scrapeNextCountyPage(page);
+        if (next) await page.goto(next);
+        return urls;
+      }
+      page.close();
+    }
+  };
+};
+
+export {
+  MugshotUrlIterator,
+  MugshotUrlChunkIterator
+};
