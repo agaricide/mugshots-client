@@ -27,22 +27,31 @@ const format = (str: string): string => {
   return str.replace(/-/g, ' ');
 };
 
-const scrapeGeoHrefs = (page: Page): Promise<string[]> => {
+const scrapeCountyHrefs = (page: Page): Promise<string[]> => {
   return page.evaluate(() => {
     const els: NodeListOf<Element> = document.querySelectorAll('a[href*=US-Counties]');
     return Array.from(els).map(el => el.getAttribute('href'));
   });
 };
 
+const scrapeStateHrefs = (page: Page): Promise<string[]> => {
+  return page.evaluate(() => {
+    const els: NodeListOf<Element> = document.querySelectorAll('a[href*=US-States]');
+    return Array.from(els).map(el => el.getAttribute('href'));
+  });
+};
+
 const getStates = async (page: Page): Promise<State[]> => {
   await page.goto(`${ORIGIN}/US-States/`);
-  const hrefs = await scrapeGeoHrefs(page);
-  return hrefs.map(toState);
+  const hrefs = await scrapeStateHrefs(page);
+  return hrefs
+    .map(toState)
+    .filter(state => state.name);
 };
 
 const getCounties = async (page: Page, state: State): Promise<County[]> => {
   await page.goto(state.url);
-  const hrefs = await scrapeGeoHrefs(page);
+  const hrefs = await scrapeCountyHrefs(page);
 
   return hrefs.reduce((results: County[], path: string) => {
     const county = toCounty(path);
