@@ -9,10 +9,10 @@ const scrapeMugshotUrls = (page: Page) => page.evaluate(() => {
 });
 
 const scrapeNextCountyPage = (page: Page) => page.evaluate(() => {
-  const nextHref = document
-    .querySelector('a[class*=next]')
-    .getAttribute('href');
-  return window.location.href + nextHref;
+  const next = document.querySelector('a.next.page');
+  if (!next) return '';
+  const nextHref = next.getAttribute('href');
+  return `${location.protocol}//${location.host}${location.pathname}${next.getAttribute('href')}`;
 });
 
 const is404 = (page: Page) => page.evaluate(() => {
@@ -43,13 +43,17 @@ const MugshotUrlChunkIterator = async (browser: Browser, county: County) => {
   await page.goto(county.url);
   return {
     async *[Symbol.asyncIterator]() {
-      while (!await is404(page)) {
-        const urls = await scrapeMugshotUrls(page);
-        const next = await scrapeNextCountyPage(page);
-        if (next) await page.goto(next);
-        return urls;
+      try {
+        while (!await is404(page)) {
+          const urls = await scrapeMugshotUrls(page);
+          const next = await scrapeNextCountyPage(page);
+          console.log(next);
+          await page.goto(next);
+          yield urls;
+        }
+      } catch {
+        page.close();
       }
-      page.close();
     }
   };
 };
