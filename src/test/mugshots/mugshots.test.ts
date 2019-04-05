@@ -3,6 +3,8 @@ import { scrapeMugshot } from '../../client/mugshots/scrapeMugshot';
 import { scrapeMugshots } from '../../client/mugshots/scrapeMugshots';
 import { getMugshotUrls } from '../../client/mugshots/getMugshotUrls';
 import { cases as testCases } from './cases.json';
+import { MugshotUrlAsyncIterator } from '../../client/mugshots/MugshotUrlGenerator';
+import { County } from '../../client/types/County';
 
 jest.setTimeout(15 * 1000);
 
@@ -122,6 +124,24 @@ describe('scrapeMugshot', () => {
     expect(mugshot.charge).toBe(test.expected.charge);
     expect(mugshot.city).toBe(test.expected.city);
     expect(mugshot.state).toBe(test.expected.state);
+    done();
+  });
+});
+
+describe('MugshotUrlAsyncIterator', () => {
+  const county: County = {
+    name: 'Autauga County',
+    state: 'Alabama',
+    url: 'https://mugshots.com/US-Counties/Alabama/Autauga-County-AL/'
+  };
+
+  it('is an async iterator that iterates through mugshot strings', async (done) => {
+    const mugshotUrls = await MugshotUrlAsyncIterator(browser, county);
+    for await (const url of mugshotUrls) {
+      expect(url).toBeTruthy();
+      expect(typeof url).toBe('string');
+      break;
+    }
     done();
   });
 });

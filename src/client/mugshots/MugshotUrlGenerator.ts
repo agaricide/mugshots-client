@@ -20,20 +20,23 @@ const is404 = (page: Page) => page.evaluate(() => {
   return segment === 'None' ? true : false;
 });
 
-const MugshotUrlGenerator = async (browser: Browser, county: County) => {
+const MugshotUrlAsyncIterator = async (browser: Browser, county: County) => {
   const page = await browser.newPage();
   await page.goto(county.url);
   return {
-    async *[Symbol.iterator]() {
+    async *[Symbol.asyncIterator]() {
       while (!await is404(page)) {
         const urls = await scrapeMugshotUrls(page);
         const next = await scrapeNextCountyPage(page);
         await page.goto(next);
-        yield urls;
+
+        while (urls.length > 0) {
+          yield urls.pop();
+        }
       }
       page.close();
     }
   };
 };
 
-export { MugshotUrlGenerator };
+export { MugshotUrlAsyncIterator };
