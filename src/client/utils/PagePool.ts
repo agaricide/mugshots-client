@@ -1,7 +1,7 @@
 import { Browser, Page } from 'puppeteer';
-import { createPool,  Options as PoolOptions } from 'generic-pool';
+import { Factory, createPool,  Options as PoolOptions } from 'generic-pool';
 
-const PageFactory = (browser: Browser) => {
+const PageFactory = (browser: Browser): Factory<Page> => {
   const cache: Page[] = [];
 
   const create = () => {
