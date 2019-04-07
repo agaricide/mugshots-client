@@ -18,7 +18,7 @@ const PageFactory = (browser: Browser) => {
   return { create, destroy };
 };
 
-const PagePool = (browser: Browser, options: PoolOptions) => createPool(PageFactory(browser), options);
+const PagePool = (browser: Browser, opts: PoolOptions) => createPool(PageFactory(browser), opts);
 
 export {
   PageFactory,
