@@ -26,18 +26,18 @@ const average = (array: number[]) => array.reduce((p,c,_,a) => p + c/a.length,0)
     console.log(county.name);
     const mugshotUrls = await MugshotUrlChunkIterator(page, county);
     
-    // START PERF TEST
-    const startTime = performance.now();
     for await (const chunk of mugshotUrls) {
+      console.log(`chunk recieved.`);
+      // START PERF TEST
+      const startTime = performance.now();
       const mugshots = await scrapeMugshots(browser, chunk, { count: 20 });
+      const endTime = performance.now();
+      const runtime = endTime - startTime;
+      runtimes.push(runtime);
+      console.log(`runtime: ${runtime}`);
+      console.log(`avg: ${average(runtimes)}`);
       // MugshotModel.insertMany(mugshots);
+      // END PERF TEST
     }
-    
-    const endTime = performance.now();
-    const runtime = endTime - startTime;
-    runtimes.push(runtime);
-    console.log(`runtime: ${runtime}`);
-    console.log(`avg: ${average(runtimes)}`);
-    // END PERF TEST
   }
 })();
