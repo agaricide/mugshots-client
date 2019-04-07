@@ -1,4 +1,4 @@
-import { Browser, Page } from 'puppeteer';
+import { Browser } from 'puppeteer';
 import { scrapeMugshot } from './scrapeMugshot';
 import { PagePool } from '../utils/PagePool';
 import { Options as PoolOptions } from 'generic-pool';
