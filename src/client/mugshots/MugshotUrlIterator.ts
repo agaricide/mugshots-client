@@ -12,7 +12,7 @@ const scrapeNextCountyPage = (page: Page) => page.evaluate(() => {
   const next = document.querySelector('a.next.page');
   if (!next) return '';
   const nextHref = next.getAttribute('href');
-  return `${location.protocol}//${location.host}${location.pathname}${next.getAttribute('href')}`;
+  return `${location.protocol}//${location.host}${location.pathname}${nextHref}`;
 });
 
 const is404 = (page: Page) => page.evaluate(() => {
@@ -51,7 +51,9 @@ const MugshotUrlChunkIterator = async (browser: Browser, county: County) => {
           await page.goto(next);
           yield urls;
         }
-      } catch {
+      } catch(error) {
+        console.log(error);
+      } finally {
         page.close();
       }
     }
