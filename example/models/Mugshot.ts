@@ -8,16 +8,16 @@ export class Mugshot extends Typegoose {
   public age: number;
 
   @prop()
-  public charges?: string;
+  public charge?: string;
 
   @prop()
   public imgUrl?: string;
 
   @prop()
-  public state: string;
+  public state?: string;
 
   @prop()
-  public county: string;
+  public county?: string;
 
   @prop()
   public url: string;
