@@ -12,7 +12,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
 
-// Ingest mugshots using Iterators
+// Ingest mugshots using iterators
 (async () => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
