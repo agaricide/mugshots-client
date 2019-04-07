@@ -18,25 +18,26 @@ const average = (array: number[]) => array.reduce((p,c,_,a) => p + c/a.length,0)
 (async () => {
   console.log('Starting...');
   const browser = await puppeteer.launch();
-  console.log('Browser launched.');
-  const counties = await CountyIterator(browser);
+  const page = await browser.newPage();
+  const counties = await CountyIterator(page);
 
   let runtimes = [];
   for await (const county of counties) {
     console.log(county.name);
+    const mugshotUrls = await MugshotUrlChunkIterator(page, county);
+    
+    // START PERF TEST
     const startTime = performance.now();
-    const mugshotUrls = await MugshotUrlChunkIterator(browser, county);
+    for await (const chunk of mugshotUrls) {
+      const mugshots = await scrapeMugshots(browser, chunk, { count: 20 });
+      // MugshotModel.insertMany(mugshots);
+    }
+    
     const endTime = performance.now();
     const runtime = endTime - startTime;
     runtimes.push(runtime);
     console.log(`runtime: ${runtime}`);
     console.log(`avg: ${average(runtimes)}`);
-    // console.log('Created mugshot iterator.')
-    // for await (const chunk of mugshotUrls) {
-    //   console.log(chunk);
-    //   const mugshots = await scrapeMugshots(browser, chunk, { count: 100 });
-    //   console.log(mugshots);
-    //   MugshotModel.insertMany(mugshots);
-    // }
+    // END PERF TEST
   }
 })();

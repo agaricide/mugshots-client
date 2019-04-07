@@ -60,8 +60,7 @@ const getCounties = async (page: Page, state: State): Promise<County[]> => {
   }, []);
 };
 
-const CountyIterator = async (browser: Browser) => {
-  const page = await browser.newPage();
+const CountyIterator = async (page: Page) => {
   const states = await getStates(page);
   return {
     async *[Symbol.asyncIterator]() {
@@ -71,7 +70,6 @@ const CountyIterator = async (browser: Browser) => {
           yield county;
         }
       }
-      page.close();
     }
   }
 };
