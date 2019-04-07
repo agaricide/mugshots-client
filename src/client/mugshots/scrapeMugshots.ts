@@ -14,8 +14,8 @@ const defaults: ScrapeOptions = {
 };
 
 export async function scrapeMugshots(browser: Browser, urls: string[], opts: ScrapeOptions = {}) {
-  const options = { ...opts, ...defaults };
-  const pagePool = PagePool(browser, { ...options.pool })
+  const options = {  ...defaults, ...opts };
+  const pagePool = PagePool(browser, { ...options.pool });
   const mugshots = urls
     .slice(0, options.count)
     .map(async (url) => {
