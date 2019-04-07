@@ -27,7 +27,7 @@ const MugshotUrlIterator = async (page: Page, county: County) => {
       while (!await is404(page)) {
         const urls = await scrapeMugshotUrls(page);
         const next = await scrapeNextCountyPage(page);
-        if (next) await page.goto(next);
+        if (!next) break;
         while (urls.length > 0) {
           yield urls.pop();
         }
@@ -44,6 +44,7 @@ const MugshotUrlChunkIterator = async (page: Page, county: County) => {
         while (!await is404(page)) {
           const urls = await scrapeMugshotUrls(page);
           const next = await scrapeNextCountyPage(page);
+          if (!next) break;
           await page.goto(next);
           yield urls;
         }
