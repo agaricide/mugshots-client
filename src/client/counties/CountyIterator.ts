@@ -1,4 +1,4 @@
-import { Browser, Page } from 'puppeteer';
+import { Page } from 'puppeteer';
 import { County } from '../types/County';
 import { State } from '../types/State';
 
