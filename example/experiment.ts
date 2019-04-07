@@ -16,7 +16,7 @@ if (process.env.NODE_ENV !== 'production') {
 const average = (array: number[]) => array.reduce((p,c,_,a) => p + c/a.length,0);
 
 (async () => {
-  console.log('Starting...');
+  console.log('Starting experiment...');
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   const counties = await CountyIterator(page);
