@@ -2,6 +2,7 @@ import * as puppeteer from 'puppeteer';
 import { scrapeMugshot } from '../../client/mugshots/scrapeMugshot';
 import { scrapeMugshots } from '../../client/mugshots/scrapeMugshots';
 import { cases as testCases } from './cases.json';
+import { PagePool } from '../../client/utils/PagePool';
 
 jest.setTimeout(15 * 1000);
 
@@ -19,9 +20,10 @@ afterAll(async (done) => {
 
 describe('scrapeMugshots', () => {
   it('returns a list of mugshot objects of the length specified', async (done) => {
+    const pagePool = PagePool(browser, { max: 1 });
     // tslint:disable-next-line:max-line-length
     const TEST_MUGSHOT = 'https://mugshots.com/US-Counties/Alabama/Autauga-County-AL/Matthew-Jerald-Sanders.175347488.html';
-    const results = await scrapeMugshots(browser, [TEST_MUGSHOT], { count: 1 });
+    const results = await scrapeMugshots(pagePool, [TEST_MUGSHOT], { count: 1 });
     expect(results.length).toBe(1);
     expect(typeof results[0]).toBe('object');
     done();

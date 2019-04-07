@@ -1,21 +1,17 @@
-import { Browser } from 'puppeteer';
+import { Page } from 'puppeteer';
 import { scrapeMugshot } from './scrapeMugshot';
-import { PagePool } from '../utils/PagePool';
-import { Options as PoolOptions } from 'generic-pool';
+import { Pool } from 'generic-pool';
 
 export interface ScrapeOptions {
-  count?: number,
-  pool?: PoolOptions
+  count?: number
 }
 
 const defaults: ScrapeOptions = {
-  count: 100,
-  pool: { max: 10 }
+  count: 100
 };
 
-export async function scrapeMugshots(browser: Browser, urls: string[], opts: ScrapeOptions = {}) {
+export async function scrapeMugshots(pagePool: Pool<Page>, urls: string[], opts: ScrapeOptions = {}) {
   const options = {  ...defaults, ...opts };
-  const pagePool = PagePool(browser, { ...options.pool });
   const mugshots = urls
     .slice(0, options.count)
     .map(async (url) => {
