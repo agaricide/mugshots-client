@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv';
 import * as mongoose from 'mongoose';
 import * as puppeteer from 'puppeteer';
 import { MugshotModel } from './models/Mugshot';
-import { CountyIterator, MugshotUrlChunkIterator, scrapeMugshots, PagePool } from '../src/index';
+import { CountyIterable, MugshotUrlChunkIterable, scrapeMugshots, PagePool } from '../src/index';
 import { performance } from 'perf_hooks';
 
 // Set environment variables
@@ -20,12 +20,12 @@ const average = (array: number[]) => array.reduce((p,c,_,a) => p + c/a.length,0)
   const browser = await puppeteer.launch();
   const pagePool = PagePool(browser, { max: 2 });
   const page = await pagePool.acquire();
-  const counties = await CountyIterator(page);
+  const counties = await CountyIterable(page);
 
   let runtimes = [];
   for await (const county of counties) {
     console.log(county.name);
-    const mugshotUrls = await MugshotUrlChunkIterator(page, county);
+    const mugshotUrls = await MugshotUrlChunkIterable(page, county);
     
     for await (const chunk of mugshotUrls) {
       console.log(`chunk recieved.`);

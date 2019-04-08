@@ -21,6 +21,7 @@ const PageFactory = (browser: Browser): Factory<Page> => {
 const PagePool = (browser: Browser, opts: PoolOptions) => createPool(PageFactory(browser), opts);
 
 export {
+  PoolOptions,
   PageFactory,
   PagePool
 }

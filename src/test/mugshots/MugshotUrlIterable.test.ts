@@ -1,5 +1,5 @@
 import * as puppeteer from 'puppeteer';
-import { MugshotUrlIterator, MugshotUrlChunkIterator } from '../../client/mugshots/MugshotUrlIterator';
+import { MugshotUrlIterable, MugshotUrlChunkIterable } from '../../client/mugshots/MugshotUrlIterable';
 import { County } from '../../client/types/County';
 
 jest.setTimeout(15 * 1000);
@@ -22,10 +22,10 @@ const county: County = {
   url: 'https://mugshots.com/US-Counties/Alabama/Autauga-County-AL/'
 };
 
-describe('MugshotUrlIterator', () => {
+describe('MugshotUrlIterable', () => {
   it('is an async iterator that iterates through mugshot strings', async (done) => {
     const page = await browser.newPage();
-    const mugshotUrls = await MugshotUrlIterator(page, county);
+    const mugshotUrls = await MugshotUrlIterable(page, county);
     for await (const url of mugshotUrls) {
       expect(url).toBeTruthy();
       expect(typeof url).toBe('string');
@@ -36,10 +36,10 @@ describe('MugshotUrlIterator', () => {
   });
 });
 
-describe('MugshotUrlChunkIterator', () => {
+describe('MugshotUrlChunkIterable', () => {
   it('is an async iterator that iterates through mugshot strings', async (done) => {
     const page = await browser.newPage();
-    const mugshotUrls = await MugshotUrlChunkIterator(page, county);
+    const mugshotUrls = await MugshotUrlChunkIterable(page, county);
     for await (const chunk of mugshotUrls) {
       expect(chunk.length).toBeTruthy();
       expect(typeof chunk[0]).toBe('string');

@@ -60,7 +60,7 @@ const getCounties = async (page: Page, state: State): Promise<County[]> => {
   }, []);
 };
 
-const CountyIterator = async (page: Page) => {
+const CountyIterable = async (page: Page) => {
   const states = await getStates(page);
   return {
     async *[Symbol.asyncIterator]() {
@@ -75,5 +75,5 @@ const CountyIterator = async (page: Page) => {
 };
 
 export {
-  CountyIterator
+  CountyIterable
 };

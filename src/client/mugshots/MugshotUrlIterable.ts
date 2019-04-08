@@ -20,7 +20,7 @@ const is404 = (page: Page) => page.evaluate(() => {
   return segment === 'None' ? true : false;
 });
 
-const MugshotUrlIterator = async (page: Page, county: County) => {
+const MugshotUrlIterable = async (page: Page, county: County) => {
   await page.goto(county.url);
   return {
     async *[Symbol.asyncIterator]() {
@@ -36,7 +36,7 @@ const MugshotUrlIterator = async (page: Page, county: County) => {
   };
 };
 
-const MugshotUrlChunkIterator = async (page: Page, county: County) => {
+const MugshotUrlChunkIterable = async (page: Page, county: County) => {
   await page.goto(county.url);
   return {
     async *[Symbol.asyncIterator]() {
@@ -56,6 +56,6 @@ const MugshotUrlChunkIterator = async (page: Page, county: County) => {
 };
 
 export {
-  MugshotUrlIterator,
-  MugshotUrlChunkIterator
+  MugshotUrlIterable,
+  MugshotUrlChunkIterable
 };
