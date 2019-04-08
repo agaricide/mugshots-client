@@ -20,42 +20,55 @@ const is404 = (page: Page) => page.evaluate(() => {
   return segment === 'None' ? true : false;
 });
 
-const MugshotUrlIterable = async (page: Page, county: County) => {
+const MugshotUrlIterator = async (page: Page, county: County) => {
   await page.goto(county.url);
-  return {
-    async *[Symbol.asyncIterator]() {
+  return async function*() {
+    while (!await is404(page)) {
+      const urls = await scrapeMugshotUrls(page);
+      const next = await scrapeNextCountyPage(page);
+      if (!next) break;
+      while (urls.length > 0) {
+        yield urls.pop();
+      }
+    }
+  }();
+};
+
+const MugshotUrlChunkIterator = async (page: Page, county: County) => {
+  await page.goto(county.url);
+  return async function*() {
+    try {
       while (!await is404(page)) {
         const urls = await scrapeMugshotUrls(page);
         const next = await scrapeNextCountyPage(page);
         if (!next) break;
-        while (urls.length > 0) {
-          yield urls.pop();
-        }
+        await page.goto(next);
+        yield urls;
       }
+    } catch(error) {
+      console.log(error);
     }
+  }();
+};
+
+const MugshotUrlIterable = async (page: Page, county: County) => {
+  const mugshotUrlIterator = await MugshotUrlIterator(page, county);
+  return {
+    [Symbol.asyncIterator]: () => mugshotUrlIterator
   };
 };
 
+
 const MugshotUrlChunkIterable = async (page: Page, county: County) => {
-  await page.goto(county.url);
+  const mugshotUrlChunkIterator = await MugshotUrlChunkIterator(page, county);
   return {
-    async *[Symbol.asyncIterator]() {
-      try {
-        while (!await is404(page)) {
-          const urls = await scrapeMugshotUrls(page);
-          const next = await scrapeNextCountyPage(page);
-          if (!next) break;
-          await page.goto(next);
-          yield urls;
-        }
-      } catch(error) {
-        console.log(error);
-      }
-    }
+    [Symbol.asyncIterator]: () => mugshotUrlChunkIterator
   };
 };
 
 export {
+  MugshotUrlIterator,
   MugshotUrlIterable,
+  MugshotUrlChunkIterator,
   MugshotUrlChunkIterable
 };

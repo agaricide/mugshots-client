@@ -60,20 +60,26 @@ const getCounties = async (page: Page, state: State): Promise<County[]> => {
   }, []);
 };
 
-const CountyIterable = async (page: Page) => {
+const CountyIterator = async (page: Page) => {
   const states = await getStates(page);
-  return {
-    async *[Symbol.asyncIterator]() {
-      for (const state of states) {
-        const counties = await getCounties(page, state);
-        for (const county of counties) {
-          yield county;
-        }
+  return async function*() {
+    for (const state of states) {
+      const counties = await getCounties(page, state);
+      for (const county of counties) {
+        yield county;
       }
     }
-  }
+  }();
+};
+
+const CountyIterable = async (page: Page) => {
+  const countyIterator = await CountyIterator(page);
+  return {
+    [Symbol.asyncIterator]: () => countyIterator
+  };
 };
 
 export {
+  CountyIterator,
   CountyIterable
 };
