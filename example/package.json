@@ -1,6 +1,6 @@
 {
   "name": "mugshots-client-example",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "Example of using mugshots-client.",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,6 @@
     "@types/mongoose": "^5.2.19",
     "dotenv": "^6.1.0",
     "mongoose": "^5.3.4",
-    "puppeteer": "^1.11.0",
     "reflect-metadata": "^0.1.12",
     "ts-node": "^7.0.1",
     "typegoose": "^5.4.1"
