@@ -18,11 +18,9 @@ const MugshotStream = async () => {
   mugshotUrlIterator = await MugshotUrlChunkIterator(page, county.value);
 
   const read = async function () {
-    // if (!urls || !urls.done) {
-    //   urls = await mugshotUrlIterator.next();
-    // }
-    const urls = await mugshotUrlIterator.next();
-
+    if (!urls || !urls.done) {
+      urls = await mugshotUrlIterator.next();
+    }
     if (urls.done && !county.done) {
       county = await counties.next();
       mugshotUrlIterator = await MugshotUrlChunkIterator(page, county.value);
