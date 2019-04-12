@@ -1,8 +1,4 @@
-import 'reflect-metadata';
-import * as mongoose from 'mongoose';
 import { MugshotStream, Mugshot } from '../src/index';
-
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
 
 // Console.log mugshot data using stream API
 (async () => {
