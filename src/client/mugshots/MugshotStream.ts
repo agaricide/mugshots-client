@@ -2,17 +2,18 @@ import { launch } from 'puppeteer';
 import { Readable } from 'stream';
 import { CountyIterator } from '../counties/CountyIterable';
 import { MugshotUrlChunkIterator } from '../mugshots/MugshotUrlIterable';
+import { Options } from 'generic-pool';
 import { scrapeMugshots } from '../mugshots/scrapeMugshots';
 import { PagePool } from '../utils/PagePool';
 import { County } from '../types/County';
 import to from 'await-to-js';
 
-const MugshotStream = async () => {
+const MugshotStream = async (options: Options = {}) => {
   let county: IteratorResult<County>;
   let urls: IteratorResult<string[]>;
   let mugshotIterator: AsyncIterableIterator<string[]>;
   const browser = await launch();
-  const pagePool = PagePool(browser, { max: 10 });
+  const pagePool = PagePool(browser, { max: 10, ...options });
   const page = await pagePool.acquire();
   const counties = await CountyIterator(page);
   county = await counties.next();
@@ -29,7 +30,7 @@ const MugshotStream = async () => {
       if (error) return handleError(error);
       urls = chunk;
     }
-  
+
     if (urls.done && !county.done) {
       county = await counties.next();
       const [error, chunkIterator] = await to(MugshotUrlChunkIterator(page, county.value));
@@ -37,11 +38,11 @@ const MugshotStream = async () => {
       mugshotIterator = chunkIterator;
       urls = await mugshotIterator.next();
     }
-  
+
     if (urls.done && county.done) {
       return false;
     }
-  
+
     const [error, mugshots] = await to(scrapeMugshots(pagePool, urls.value, { count: 10 }));
     if (error) return handleError(error);
     this.push(mugshots);
@@ -59,5 +60,5 @@ const MugshotStream = async () => {
 };
 
 export {
-  MugshotStream
+  MugshotStream 
 };
