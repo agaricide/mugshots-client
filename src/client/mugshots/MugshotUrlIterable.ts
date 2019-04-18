@@ -22,7 +22,7 @@ const is404 = (page: Page) => page.evaluate(() => {
 
 const MugshotUrlIterator = async (page: Page, county: County) => {
   await page.goto(county.url);
-  return async function*() {
+  return async function* () {
     while (!await is404(page)) {
       const urls = await scrapeMugshotUrls(page);
       const next = await scrapeNextCountyPage(page);
@@ -36,17 +36,13 @@ const MugshotUrlIterator = async (page: Page, county: County) => {
 
 const MugshotUrlChunkIterator = async (page: Page, county: County) => {
   await page.goto(county.url);
-  return async function*() {
-    try {
-      while (!await is404(page)) {
-        const urls = await scrapeMugshotUrls(page);
-        const next = await scrapeNextCountyPage(page);
-        if (!next) break;
-        await page.goto(next);
-        yield urls;
-      }
-    } catch(error) {
-      console.log(error);
+  return async function* () {
+    while (!await is404(page)) {
+      const urls = await scrapeMugshotUrls(page);
+      const next = await scrapeNextCountyPage(page);
+      if (!next) break;
+      await page.goto(next);
+      yield urls;
     }
   }();
 };
