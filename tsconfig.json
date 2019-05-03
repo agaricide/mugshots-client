@@ -7,6 +7,7 @@
     "sourceMap": true,
     "target": "es6",
     "outDir": "dist",
+    "declaration": true,
     "baseUrl": ".",
     "resolveJsonModule": true,
     "paths": {
@@ -20,8 +21,10 @@
     ]
   },
   "include": [
-    "src/**/*",
-    "example/models/Mugshot.ts",
-    "example/models/County.ts"
+    "src/**/*"
+  ],
+  "exclude": [
+    "**/test/**/*",
+    "example/**/*"
   ]
 }

@@ -1,4 +1,4 @@
-import { MugshotStream, Mugshot } from '../src/index';
+import { MugshotStream, Mugshot } from '../dist';
 
 // Console.log mugshot data using stream API
 (async () => {

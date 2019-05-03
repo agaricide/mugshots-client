@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv';
 import * as mongoose from 'mongoose';
 import * as puppeteer from 'puppeteer';
 import { MugshotModel } from './models/Mugshot';
-import { CountyIterable, MugshotUrlChunkIterable, scrapeMugshots, PagePool } from '../src/index';
+import { CountyIterable, MugshotUrlChunkIterable, scrapeMugshots, PagePool } from '../dist';
 
 // Set environment variables
 if (process.env.NODE_ENV !== 'production') {
