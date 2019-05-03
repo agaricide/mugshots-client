@@ -2,7 +2,7 @@ import { MugshotStream, Mugshot } from '../src/index';
 
 // Console.log mugshot data using stream API
 (async () => {
-  const mugshotStream = await MugshotStream();
+  const mugshotStream = await MugshotStream({ count: 10 });
   console.log('Stream created.');
 
   mugshotStream.on('error', (error) => {

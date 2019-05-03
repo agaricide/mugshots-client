@@ -2,13 +2,13 @@ import { launch } from 'puppeteer';
 import { Readable } from 'stream';
 import { CountyIterator } from '../counties/CountyIterable';
 import { MugshotUrlChunkIterator } from '../mugshots/MugshotUrlIterable';
-import { Options } from 'generic-pool';
-import { scrapeMugshots } from '../mugshots/scrapeMugshots';
+import { Options as PoolOptions } from 'generic-pool';
+import { scrapeMugshots, ScrapeOptions } from '../mugshots/scrapeMugshots';
 import { PagePool } from '../utils/PagePool';
 import { County } from '../types/County';
 import to from 'await-to-js';
 
-const MugshotStream = async (options: Options = {}) => {
+const MugshotStream = async (options: PoolOptions & ScrapeOptions = {}) => {
   let county: IteratorResult<County>;
   let urls: IteratorResult<string[]>;
   let mugshotIterator: AsyncIterableIterator<string[]>;
@@ -43,7 +43,7 @@ const MugshotStream = async (options: Options = {}) => {
       return false;
     }
 
-    const [error, mugshots] = await to(scrapeMugshots(pagePool, urls.value, { count: 10 }));
+    const [error, mugshots] = await to(scrapeMugshots(pagePool, urls.value, options));
     if (error) return handleError(error);
     this.push(mugshots);
   };
