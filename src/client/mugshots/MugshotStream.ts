@@ -18,9 +18,15 @@ const MugshotStream = async (options: PoolOptions & ScrapeOptions = {}) => {
   county = await counties.next();
   mugshotIterator = await MugshotUrlChunkIterator(page, county.value);
 
-  const destroy = async () => {
-    await browser.close();
-  }
+  const destroy = async function (error: Error | null, callback: Function) {
+    try {
+      if (error) this.emit('error', error);
+      await browser.close();
+      callback(null);
+    } catch (error) {
+      callback(error);
+    }
+  };
 
   const read = async function () {
     try {
