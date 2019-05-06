@@ -6,7 +6,6 @@ import { Options as PoolOptions } from 'generic-pool';
 import { scrapeMugshots, ScrapeOptions } from '../mugshots/scrapeMugshots';
 import { PagePool } from '../utils/PagePool';
 import { County } from '../types/County';
-import to from 'await-to-js';
 
 const MugshotStream = async (options: PoolOptions & ScrapeOptions = {}) => {
   let county: IteratorResult<County>;
@@ -19,38 +18,33 @@ const MugshotStream = async (options: PoolOptions & ScrapeOptions = {}) => {
   county = await counties.next();
   mugshotIterator = await MugshotUrlChunkIterator(page, county.value);
 
-  const read = async function () {
-    const handleError = (error: any) => {
-      this.emit('error', error);
-      this.push([]);
-    }
-
-    if (!urls || !urls.done) {
-      const [error, chunk] = await to(mugshotIterator.next());
-      if (error) return handleError(error);
-      urls = chunk;
-    }
-
-    if (urls.done && !county.done) {
-      county = await counties.next();
-      const [error, chunkIterator] = await to(MugshotUrlChunkIterator(page, county.value));
-      if (error) return handleError(error);
-      mugshotIterator = chunkIterator;
-      urls = await mugshotIterator.next();
-    }
-
-    if (urls.done && county.done) {
-      return false;
-    }
-
-    const [error, mugshots] = await to(scrapeMugshots(pagePool, urls.value, options));
-    if (error) return handleError(error);
-    this.push(mugshots);
-  };
-
   const destroy = async () => {
     await browser.close();
   }
+
+  const read = async function () {
+    try {
+      if (!urls || !urls.done) {
+        urls = await mugshotIterator.next();
+      }
+
+      if (urls.done && !county.done) {
+        county = await counties.next();
+        mugshotIterator = await MugshotUrlChunkIterator(page, county.value);
+        urls = await mugshotIterator.next();
+      }
+
+      if (urls.done && county.done) {
+        return false;
+      }
+
+      const mugshots = await scrapeMugshots(pagePool, urls.value, options);
+      this.push(mugshots);
+    } catch (error) {
+      this.emit('error', error);
+      this.push([]);
+    }
+  };
 
   return new Readable({
     objectMode: true,
@@ -60,5 +54,5 @@ const MugshotStream = async (options: PoolOptions & ScrapeOptions = {}) => {
 };
 
 export {
-  MugshotStream 
+  MugshotStream
 };
