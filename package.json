@@ -8,7 +8,7 @@
     "build": "tsc",
     "test": "jest",
     "lint": "tslint -c tslint.json -p tsconfig.json",
-    "docs": "typedoc --theme markdown --out docs src"
+    "docs": "typedoc --theme markdown --exclude  **/*.test.ts --out docs src"
   },
   "devDependencies": {
     "@types/generic-pool": "^3.1.9",

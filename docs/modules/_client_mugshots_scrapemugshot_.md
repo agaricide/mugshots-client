@@ -29,7 +29,7 @@
 
 ▸ **scrapeChargeList**(page: *`Page`*): `Promise`<`string`[]>
 
-*Defined in [client/mugshots/scrapeMugshot.ts:27](https://github.com/agaricide/mugshots-client/blob/ddd2d5c/src/client/mugshots/scrapeMugshot.ts#L27)*
+*Defined in [client/mugshots/scrapeMugshot.ts:27](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/mugshots/scrapeMugshot.ts#L27)*
 
 **Parameters:**
 
@@ -46,7 +46,7 @@ ___
 
 ▸ **scrapeCity**(page: *`Page`*): `Promise`<`string`>
 
-*Defined in [client/mugshots/scrapeMugshot.ts:57](https://github.com/agaricide/mugshots-client/blob/ddd2d5c/src/client/mugshots/scrapeMugshot.ts#L57)*
+*Defined in [client/mugshots/scrapeMugshot.ts:57](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/mugshots/scrapeMugshot.ts#L57)*
 
 **Parameters:**
 
@@ -63,7 +63,7 @@ ___
 
 ▸ **scrapeFields**(page: *`Page`*): `Promise`<[StringMap](../interfaces/_client_mugshots_scrapemugshot_.stringmap.md)>
 
-*Defined in [client/mugshots/scrapeMugshot.ts:6](https://github.com/agaricide/mugshots-client/blob/ddd2d5c/src/client/mugshots/scrapeMugshot.ts#L6)*
+*Defined in [client/mugshots/scrapeMugshot.ts:6](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/mugshots/scrapeMugshot.ts#L6)*
 
 **Parameters:**
 
@@ -80,7 +80,7 @@ ___
 
 ▸ **scrapeImgUrl**(page: *`Page`*): `Promise`<`string`>
 
-*Defined in [client/mugshots/scrapeMugshot.ts:43](https://github.com/agaricide/mugshots-client/blob/ddd2d5c/src/client/mugshots/scrapeMugshot.ts#L43)*
+*Defined in [client/mugshots/scrapeMugshot.ts:43](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/mugshots/scrapeMugshot.ts#L43)*
 
 **Parameters:**
 
@@ -97,7 +97,7 @@ ___
 
 ▸ **scrapeMugshot**(page: *`Page`*, url: *`string`*): `Promise`<[Mugshot](../interfaces/_client_types_mugshot_.mugshot.md)>
 
-*Defined in [client/mugshots/scrapeMugshot.ts:66](https://github.com/agaricide/mugshots-client/blob/ddd2d5c/src/client/mugshots/scrapeMugshot.ts#L66)*
+*Defined in [client/mugshots/scrapeMugshot.ts:66](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/mugshots/scrapeMugshot.ts#L66)*
 
 **Parameters:**
 
@@ -115,7 +115,7 @@ ___
 
 ▸ **scrapeName**(page: *`Page`*): `Promise`<`string`>
 
-*Defined in [client/mugshots/scrapeMugshot.ts:35](https://github.com/agaricide/mugshots-client/blob/ddd2d5c/src/client/mugshots/scrapeMugshot.ts#L35)*
+*Defined in [client/mugshots/scrapeMugshot.ts:35](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/mugshots/scrapeMugshot.ts#L35)*
 
 **Parameters:**
 
@@ -132,7 +132,7 @@ ___
 
 ▸ **scrapeState**(page: *`Page`*): `Promise`<`string`>
 
-*Defined in [client/mugshots/scrapeMugshot.ts:49](https://github.com/agaricide/mugshots-client/blob/ddd2d5c/src/client/mugshots/scrapeMugshot.ts#L49)*
+*Defined in [client/mugshots/scrapeMugshot.ts:49](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/mugshots/scrapeMugshot.ts#L49)*
 
 **Parameters:**
 
@@ -149,7 +149,7 @@ ___
 
 ▸ **scrapeTable**(page: *`Page`*): `Promise`<[StringMap](../interfaces/_client_mugshots_scrapemugshot_.stringmap.md)>
 
-*Defined in [client/mugshots/scrapeMugshot.ts:17](https://github.com/agaricide/mugshots-client/blob/ddd2d5c/src/client/mugshots/scrapeMugshot.ts#L17)*
+*Defined in [client/mugshots/scrapeMugshot.ts:17](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/mugshots/scrapeMugshot.ts#L17)*
 
 **Parameters:**
 

@@ -88,9 +88,6 @@ Docs
 * ["client/types/State"](modules/_client_types_state_.md)
 * ["client/utils/PagePool"](modules/_client_utils_pagepool_.md)
 * ["index"](modules/_index_.md)
-* ["tests/mugshots/MugshotUrlIterable.test"](modules/_tests_mugshots_mugshoturliterable_test_.md)
-* ["tests/mugshots/cases"](modules/_tests_mugshots_cases_.md)
-* ["tests/mugshots/scrapeMugshots.test"](modules/_tests_mugshots_scrapemugshots_test_.md)
 
 ---
 

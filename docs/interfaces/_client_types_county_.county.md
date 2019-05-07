@@ -24,7 +24,7 @@
 
 **● name**: *`string`*
 
-*Defined in [client/types/County.ts:2](https://github.com/agaricide/mugshots-client/blob/ddd2d5c/src/client/types/County.ts#L2)*
+*Defined in [client/types/County.ts:2](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/types/County.ts#L2)*
 
 ___
 <a id="state"></a>
@@ -33,7 +33,7 @@ ___
 
 **● state**: *`string`*
 
-*Defined in [client/types/County.ts:3](https://github.com/agaricide/mugshots-client/blob/ddd2d5c/src/client/types/County.ts#L3)*
+*Defined in [client/types/County.ts:3](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/types/County.ts#L3)*
 
 ___
 <a id="url"></a>
@@ -42,7 +42,7 @@ ___
 
 **● url**: *`string`*
 
-*Defined in [client/types/County.ts:4](https://github.com/agaricide/mugshots-client/blob/ddd2d5c/src/client/types/County.ts#L4)*
+*Defined in [client/types/County.ts:4](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/types/County.ts#L4)*
 
 ___
 
