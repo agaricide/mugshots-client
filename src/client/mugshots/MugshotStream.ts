@@ -54,8 +54,8 @@ const MugshotStream = async (options: PoolOptions & ScrapeOptions = {}) => {
 
   return new Readable({
     objectMode: true,
+    destroy,
     read,
-    destroy
   });
 };
 
