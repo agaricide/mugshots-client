@@ -1,5 +1,5 @@
 import * as puppeteer from 'puppeteer';
-import { CountyIterable, MugshotUrlChunkIterable, scrapeMugshots, PagePool } from '../src/index';
+import { CountyIterable, MugshotUrlChunkIterable, scrapeMugshots, PagePool } from '../dist';
 import { performance } from 'perf_hooks';
 
 const TEST_CHUNK_SIZE = 20;
