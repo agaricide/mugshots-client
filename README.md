@@ -5,7 +5,18 @@ Unofficial node client for [mugshots.com](https://mugshots.com/).  Exposes both 
 
 ## Usage
 
-### Stream API
+### Importing
+#### Typescript
+
+`import { MugshotStream, Mugshot } from 'mugshot-client';`
+
+
+#### Javascript
+
+`const { MugshotStream } = require('mugshot-client');`
+
+### API
+#### Stream API
 
 Console.log mugshot data using the [stream API](https://github.com/agaricide/mugshots-client/blob/master/example/stream.ts):
 
@@ -30,7 +41,7 @@ import { MugshotStream, Mugshot } from 'mugshot-client';
 })();
 ```
 
-### Async Iterator API
+#### Async Iterator API
 
 Console.log mugshot data using the [Async Iterator API](https://github.com/agaricide/mugshots-client/blob/master/example/iterables.ts):
 
