@@ -1,19 +1,19 @@
 # mugshots-client
 
 ## About
-Unofficial Node.js client for [mugshots.com](https://mugshots.com/).  Exposes both a [Readable Stream](https://nodejs.org/api/stream.html#stream_readable_streams) and an [Async Iterator API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/asyncIterator) that streams [Mugshot objects](https://github.com/agaricide/mugshots-client/blob/master/src/client/types/Mugshot.ts).
+Unofficial Node.js client for [mugshots.com](https://mugshots.com/).  Exposes both a [Readable Stream](https://nodejs.org/api/stream.html#stream_readable_streams) and an [Async Iterator API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/asyncIterator) for streaming [Mugshot objects](https://github.com/agaricide/mugshots-client/blob/master/src/client/types/Mugshot.ts).
 
 ## Usage
 
 ### Importing
 #### Typescript
 
-`import { MugshotStream, Mugshot } from 'mugshot-client';`
+`import { MugshotStream, Mugshot } from 'mugshots-client';`
 
 
 #### Javascript (CommonJS)
 
-`const { MugshotStream } = require('mugshot-client');`
+`const { MugshotStream } = require('mugshots-client');`
 
 ### API
 #### Stream API
@@ -21,7 +21,7 @@ Unofficial Node.js client for [mugshots.com](https://mugshots.com/).  Exposes bo
 Console.log mugshot data using the [Readable Stream API](https://github.com/agaricide/mugshots-client/blob/master/example/stream.ts):
 
 ```ts
-import { MugshotStream, Mugshot } from 'mugshot-client';
+import { MugshotStream, Mugshot } from 'mugshots-client';
 
 (async () => {
   const mugshotStream = await MugshotStream({ chunkSize: 10 });
@@ -47,7 +47,7 @@ Console.log mugshot data using the [Async Iterator API](https://github.com/agari
 
 ```ts
 import * as puppeteer from 'puppeteer';
-import { CountyIterable, MugshotUrlChunkIterable, scrapeMugshots, PagePool, Mugshot } from 'mugshot-client';
+import { CountyIterable, MugshotUrlChunkIterable, scrapeMugshots, PagePool, Mugshot } from 'mugshots-client';
 
 (async () => {
   const browser = await puppeteer.launch();
