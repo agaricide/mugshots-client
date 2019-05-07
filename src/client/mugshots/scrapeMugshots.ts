@@ -3,17 +3,17 @@ import { scrapeMugshot } from './scrapeMugshot';
 import { Pool } from 'generic-pool';
 
 export interface ScrapeOptions {
-  count?: number
+  maxChunkSize?: number
 }
 
 const defaults: ScrapeOptions = {
-  count: 100
+  maxChunkSize: 100
 };
 
 export async function scrapeMugshots(pagePool: Pool<Page>, urls: string[], opts: ScrapeOptions = {}) {
   const options = {  ...defaults, ...opts };
   const mugshots = urls
-    .slice(0, options.count)
+    .slice(0, options.maxChunkSize)
     .map(async (url) => {
       const page = await pagePool.acquire();
       const mugshot = await scrapeMugshot(page, url);

@@ -19,7 +19,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
   for await (const county of counties) {
     const mugshotUrls = await MugshotUrlChunkIterable(page, county);
     for await (const chunk of mugshotUrls) {
-      const mugshots = await scrapeMugshots(pagePool, chunk, { count: 20 });
+      const mugshots = await scrapeMugshots(pagePool, chunk, { maxChunkSize: 20 });
       MugshotModel.insertMany(mugshots);
     }
   }
