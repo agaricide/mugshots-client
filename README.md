@@ -1,7 +1,7 @@
 # mugshots-client
 
 ## About
-Unofficial node client for [mugshots.com](https://mugshots.com/).  Exposes both a [Readable Stream](https://nodejs.org/api/stream.html#stream_readable_streams) and an [Async Iterator API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/asyncIterator) that streams [Mugshot objects](https://github.com/agaricide/mugshots-client/blob/master/src/client/types/Mugshot.ts).
+Unofficial Node.js client for [mugshots.com](https://mugshots.com/).  Exposes both a [Readable Stream](https://nodejs.org/api/stream.html#stream_readable_streams) and an [Async Iterator API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/asyncIterator) that streams [Mugshot objects](https://github.com/agaricide/mugshots-client/blob/master/src/client/types/Mugshot.ts).
 
 ## Usage
 
@@ -11,14 +11,14 @@ Unofficial node client for [mugshots.com](https://mugshots.com/).  Exposes both 
 `import { MugshotStream, Mugshot } from 'mugshot-client';`
 
 
-#### Javascript
+#### Javascript (CommonJS)
 
 `const { MugshotStream } = require('mugshot-client');`
 
 ### API
 #### Stream API
 
-Console.log mugshot data using the [stream API](https://github.com/agaricide/mugshots-client/blob/master/example/stream.ts):
+Console.log mugshot data using the [Readable Stream API](https://github.com/agaricide/mugshots-client/blob/master/example/stream.ts):
 
 ```ts
 import { MugshotStream, Mugshot } from 'mugshot-client';
