@@ -29,7 +29,7 @@
 
 **● age**: *`number`*
 
-*Defined in [client/types/Mugshot.ts:3](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/types/Mugshot.ts#L3)*
+*Defined in [client/types/Mugshot.ts:3](https://github.com/agaricide/mugshots-client/blob/b6f584c/src/client/types/Mugshot.ts#L3)*
 
 ___
 <a id="charge"></a>
@@ -38,7 +38,7 @@ ___
 
 **● charge**: *`string`*
 
-*Defined in [client/types/Mugshot.ts:4](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/types/Mugshot.ts#L4)*
+*Defined in [client/types/Mugshot.ts:4](https://github.com/agaricide/mugshots-client/blob/b6f584c/src/client/types/Mugshot.ts#L4)*
 
 ___
 <a id="city"></a>
@@ -47,7 +47,7 @@ ___
 
 **● city**: *`string`*
 
-*Defined in [client/types/Mugshot.ts:7](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/types/Mugshot.ts#L7)*
+*Defined in [client/types/Mugshot.ts:7](https://github.com/agaricide/mugshots-client/blob/b6f584c/src/client/types/Mugshot.ts#L7)*
 
 ___
 <a id="county"></a>
@@ -56,7 +56,7 @@ ___
 
 **● county**: *`string`*
 
-*Defined in [client/types/Mugshot.ts:8](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/types/Mugshot.ts#L8)*
+*Defined in [client/types/Mugshot.ts:8](https://github.com/agaricide/mugshots-client/blob/b6f584c/src/client/types/Mugshot.ts#L8)*
 
 ___
 <a id="imgurl"></a>
@@ -65,7 +65,7 @@ ___
 
 **● imgUrl**: *`string`*
 
-*Defined in [client/types/Mugshot.ts:5](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/types/Mugshot.ts#L5)*
+*Defined in [client/types/Mugshot.ts:5](https://github.com/agaricide/mugshots-client/blob/b6f584c/src/client/types/Mugshot.ts#L5)*
 
 ___
 <a id="name"></a>
@@ -74,7 +74,7 @@ ___
 
 **● name**: *`string`*
 
-*Defined in [client/types/Mugshot.ts:2](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/types/Mugshot.ts#L2)*
+*Defined in [client/types/Mugshot.ts:2](https://github.com/agaricide/mugshots-client/blob/b6f584c/src/client/types/Mugshot.ts#L2)*
 
 ___
 <a id="state"></a>
@@ -83,7 +83,7 @@ ___
 
 **● state**: *`string`*
 
-*Defined in [client/types/Mugshot.ts:6](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/types/Mugshot.ts#L6)*
+*Defined in [client/types/Mugshot.ts:6](https://github.com/agaricide/mugshots-client/blob/b6f584c/src/client/types/Mugshot.ts#L6)*
 
 ___
 <a id="url"></a>
@@ -92,7 +92,7 @@ ___
 
 **● url**: *`string`*
 
-*Defined in [client/types/Mugshot.ts:9](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/types/Mugshot.ts#L9)*
+*Defined in [client/types/Mugshot.ts:9](https://github.com/agaricide/mugshots-client/blob/b6f584c/src/client/types/Mugshot.ts#L9)*
 
 ___
 

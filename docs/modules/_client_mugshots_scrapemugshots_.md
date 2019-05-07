@@ -26,7 +26,7 @@
 
 ▸ **scrapeMugshots**(pagePool: *`Pool`<`Page`>*, urls: *`string`[]*, opts?: *[ScrapeOptions](../interfaces/_client_mugshots_scrapemugshots_.scrapeoptions.md)*): `Promise`<[Mugshot](../interfaces/_client_types_mugshot_.mugshot.md)[]>
 
-*Defined in [client/mugshots/scrapeMugshots.ts:13](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/mugshots/scrapeMugshots.ts#L13)*
+*Defined in [client/mugshots/scrapeMugshots.ts:13](https://github.com/agaricide/mugshots-client/blob/b6f584c/src/client/mugshots/scrapeMugshots.ts#L13)*
 
 **Parameters:**
 
@@ -48,7 +48,7 @@ ___
 
 **defaults**: *`object`*
 
-*Defined in [client/mugshots/scrapeMugshots.ts:9](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/mugshots/scrapeMugshots.ts#L9)*
+*Defined in [client/mugshots/scrapeMugshots.ts:9](https://github.com/agaricide/mugshots-client/blob/b6f584c/src/client/mugshots/scrapeMugshots.ts#L9)*
 
 <a id="defaults.maxchunksize"></a>
 
@@ -56,7 +56,7 @@ ___
 
 **● maxChunkSize**: *`number`* = 100
 
-*Defined in [client/mugshots/scrapeMugshots.ts:10](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/mugshots/scrapeMugshots.ts#L10)*
+*Defined in [client/mugshots/scrapeMugshots.ts:10](https://github.com/agaricide/mugshots-client/blob/b6f584c/src/client/mugshots/scrapeMugshots.ts#L10)*
 
 ___
 

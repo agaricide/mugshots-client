@@ -18,7 +18,7 @@
 
 ▸ **MugshotStream**(options?: *`PoolOptions` & [ScrapeOptions](../interfaces/_client_mugshots_scrapemugshots_.scrapeoptions.md)*): `Promise`<`Readable`>
 
-*Defined in [client/mugshots/MugshotStream.ts:10](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/mugshots/MugshotStream.ts#L10)*
+*Defined in [client/mugshots/MugshotStream.ts:10](https://github.com/agaricide/mugshots-client/blob/b6f584c/src/client/mugshots/MugshotStream.ts#L10)*
 
 **Parameters:**
 
