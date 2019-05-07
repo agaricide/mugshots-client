@@ -1,5 +1,7 @@
 # mugshots-client
 
+[![npm version](https://badge.fury.io/js/mugshots-client.svg)](https://badge.fury.io/js/mugshots-client)
+
 ## About
 Unofficial Node.js client for [mugshots.com](https://mugshots.com/).  Exposes both a [Readable Stream](https://nodejs.org/api/stream.html#stream_readable_streams) and an [Async Iterator API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/asyncIterator) for streaming [Mugshot objects](https://github.com/agaricide/mugshots-client/blob/master/src/client/types/Mugshot.ts). 🚔👮
 
