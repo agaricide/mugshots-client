@@ -66,3 +66,10 @@ import { CountyIterable, MugshotUrlChunkIterable, scrapeMugshots, PagePool, Mugs
 ```
 
 ## Docs
+
+#### [MugshotStream](docs/modules/_client_mugshots_mugshotstream_.md)
+#### [PagePool](docs/modules/_client_utils_pagepool_.md)
+#### [CountyIterable](docs/modules/_client_counties_countyiterable_.md)
+#### [MugshotUrlIterable](docs/modules/_client_mugshots_mugshoturliterable_.md)
+#### [scrapeMugshot](docs/modules/_client_mugshots_scrapemugshot_.md)
+#### [scrapeMugshots](docs/modules/_client_mugshots_scrapemugshots_.md)
