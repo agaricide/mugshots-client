@@ -1,6 +1,22 @@
 {
   "name": "mugshots-client",
-  "version": "0.0.2",
+  "homepage": "https://github.com/agaricide/mugshots-client",
+  "bugs": {
+    "url": "https://github.com/agaricide/mugshots-client/issues"
+  },
+  "author": {
+    "name": "agaricide",
+    "url": "https://github.com/agaricide"
+  },
+  "license": "MIT",
+  "keywords": [
+    "mugshots.com",
+    "mugshots",
+    "unofficial",
+    "client",
+    "scraper"
+  ],
+  "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "description": "Unofficial mugshots.com node client.",
