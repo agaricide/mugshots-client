@@ -30,7 +30,7 @@
 
 **● ORIGIN**: *"https://mugshots.com"* = "https://mugshots.com"
 
-*Defined in [client/counties/CountyIterable.ts:5](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/counties/CountyIterable.ts#L5)*
+*Defined in [client/counties/CountyIterable.ts:5](https://github.com/agaricide/mugshots-client/blob/101dc0c/src/client/counties/CountyIterable.ts#L5)*
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 ▸ **CountyIterable**(page: *`Page`*): `Promise`<`object`>
 
-*Defined in [client/counties/CountyIterable.ts:75](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/counties/CountyIterable.ts#L75)*
+*Defined in [client/counties/CountyIterable.ts:75](https://github.com/agaricide/mugshots-client/blob/101dc0c/src/client/counties/CountyIterable.ts#L75)*
 
 **Parameters:**
 
@@ -59,7 +59,7 @@ ___
 
 ▸ **CountyIterator**(page: *`Page`*): `Promise`<`AsyncIterableIterator`<[County](../interfaces/_client_types_county_.county.md)>>
 
-*Defined in [client/counties/CountyIterable.ts:63](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/counties/CountyIterable.ts#L63)*
+*Defined in [client/counties/CountyIterable.ts:63](https://github.com/agaricide/mugshots-client/blob/101dc0c/src/client/counties/CountyIterable.ts#L63)*
 
 **Parameters:**
 
@@ -76,7 +76,7 @@ ___
 
 ▸ **format**(str: *`string`*): `string`
 
-*Defined in [client/counties/CountyIterable.ts:26](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/counties/CountyIterable.ts#L26)*
+*Defined in [client/counties/CountyIterable.ts:26](https://github.com/agaricide/mugshots-client/blob/101dc0c/src/client/counties/CountyIterable.ts#L26)*
 
 **Parameters:**
 
@@ -93,7 +93,7 @@ ___
 
 ▸ **getCounties**(page: *`Page`*, state: *[State](../interfaces/_client_types_state_.state.md)*): `Promise`<[County](../interfaces/_client_types_county_.county.md)[]>
 
-*Defined in [client/counties/CountyIterable.ts:52](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/counties/CountyIterable.ts#L52)*
+*Defined in [client/counties/CountyIterable.ts:52](https://github.com/agaricide/mugshots-client/blob/101dc0c/src/client/counties/CountyIterable.ts#L52)*
 
 **Parameters:**
 
@@ -111,7 +111,7 @@ ___
 
 ▸ **getStates**(page: *`Page`*): `Promise`<[State](../interfaces/_client_types_state_.state.md)[]>
 
-*Defined in [client/counties/CountyIterable.ts:44](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/counties/CountyIterable.ts#L44)*
+*Defined in [client/counties/CountyIterable.ts:44](https://github.com/agaricide/mugshots-client/blob/101dc0c/src/client/counties/CountyIterable.ts#L44)*
 
 **Parameters:**
 
@@ -128,7 +128,7 @@ ___
 
 ▸ **scrapeCountyHrefs**(page: *`Page`*): `Promise`<`string`[]>
 
-*Defined in [client/counties/CountyIterable.ts:30](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/counties/CountyIterable.ts#L30)*
+*Defined in [client/counties/CountyIterable.ts:30](https://github.com/agaricide/mugshots-client/blob/101dc0c/src/client/counties/CountyIterable.ts#L30)*
 
 **Parameters:**
 
@@ -145,7 +145,7 @@ ___
 
 ▸ **scrapeStateHrefs**(page: *`Page`*): `Promise`<`string`[]>
 
-*Defined in [client/counties/CountyIterable.ts:37](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/counties/CountyIterable.ts#L37)*
+*Defined in [client/counties/CountyIterable.ts:37](https://github.com/agaricide/mugshots-client/blob/101dc0c/src/client/counties/CountyIterable.ts#L37)*
 
 **Parameters:**
 
@@ -162,7 +162,7 @@ ___
 
 ▸ **toCounty**(path: *`string`*): [County](../interfaces/_client_types_county_.county.md) \| `null`
 
-*Defined in [client/counties/CountyIterable.ts:7](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/counties/CountyIterable.ts#L7)*
+*Defined in [client/counties/CountyIterable.ts:7](https://github.com/agaricide/mugshots-client/blob/101dc0c/src/client/counties/CountyIterable.ts#L7)*
 
 **Parameters:**
 
@@ -179,7 +179,7 @@ ___
 
 ▸ **toState**(path: *`string`*): [State](../interfaces/_client_types_state_.state.md)
 
-*Defined in [client/counties/CountyIterable.ts:19](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/counties/CountyIterable.ts#L19)*
+*Defined in [client/counties/CountyIterable.ts:19](https://github.com/agaricide/mugshots-client/blob/101dc0c/src/client/counties/CountyIterable.ts#L19)*
 
 **Parameters:**
 

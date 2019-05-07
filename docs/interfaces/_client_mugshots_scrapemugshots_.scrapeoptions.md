@@ -22,7 +22,7 @@
 
 **● maxChunkSize**: *`number`*
 
-*Defined in [client/mugshots/scrapeMugshots.ts:6](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/mugshots/scrapeMugshots.ts#L6)*
+*Defined in [client/mugshots/scrapeMugshots.ts:6](https://github.com/agaricide/mugshots-client/blob/101dc0c/src/client/mugshots/scrapeMugshots.ts#L6)*
 
 ___
 

@@ -24,7 +24,7 @@ Console.log mugshot data using the [Readable Stream API](https://github.com/agar
 import { MugshotStream, Mugshot } from 'mugshots-client';
 
 (async () => {
-  const mugshotStream = await MugshotStream({ chunkSize: 10 });
+  const mugshotStream = await MugshotStream({ maxChunkSize: 10 });
   console.log('Stream created.');
 
   mugshotStream.on('error', (error) => {
@@ -58,7 +58,7 @@ import { CountyIterable, MugshotUrlChunkIterable, scrapeMugshots, PagePool, Mugs
   for await (const county of counties) {
     const mugshotUrls = await MugshotUrlChunkIterable(page, county);
     for await (const chunk of mugshotUrls) {
-      const mugshots = await scrapeMugshots(pagePool, chunk, { chunkSize: 20 });
+      const mugshots = await scrapeMugshots(pagePool, chunk, { maxChunkSize: 20 });
       console.log(mugshots);
     }
   }

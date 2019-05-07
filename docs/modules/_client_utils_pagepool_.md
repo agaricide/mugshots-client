@@ -19,7 +19,7 @@
 
 ▸ **PageFactory**(browser: *`Browser`*): `Factory`<`Page`>
 
-*Defined in [client/utils/PagePool.ts:4](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/utils/PagePool.ts#L4)*
+*Defined in [client/utils/PagePool.ts:4](https://github.com/agaricide/mugshots-client/blob/101dc0c/src/client/utils/PagePool.ts#L4)*
 
 **Parameters:**
 
@@ -36,7 +36,7 @@ ___
 
 ▸ **PagePool**(browser: *`Browser`*, opts: *`PoolOptions`*): `Pool`<`Page`>
 
-*Defined in [client/utils/PagePool.ts:21](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/utils/PagePool.ts#L21)*
+*Defined in [client/utils/PagePool.ts:21](https://github.com/agaricide/mugshots-client/blob/101dc0c/src/client/utils/PagePool.ts#L21)*
 
 **Parameters:**
 

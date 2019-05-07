@@ -24,7 +24,7 @@
 
 ▸ **MugshotUrlChunkIterable**(page: *`Page`*, county: *[County](../interfaces/_client_types_county_.county.md)*): `Promise`<`object`>
 
-*Defined in [client/mugshots/MugshotUrlIterable.ts:58](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/mugshots/MugshotUrlIterable.ts#L58)*
+*Defined in [client/mugshots/MugshotUrlIterable.ts:58](https://github.com/agaricide/mugshots-client/blob/101dc0c/src/client/mugshots/MugshotUrlIterable.ts#L58)*
 
 **Parameters:**
 
@@ -42,7 +42,7 @@ ___
 
 ▸ **MugshotUrlChunkIterator**(page: *`Page`*, county: *[County](../interfaces/_client_types_county_.county.md)*): `Promise`<`AsyncIterableIterator`<`string`[]>>
 
-*Defined in [client/mugshots/MugshotUrlIterable.ts:37](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/mugshots/MugshotUrlIterable.ts#L37)*
+*Defined in [client/mugshots/MugshotUrlIterable.ts:37](https://github.com/agaricide/mugshots-client/blob/101dc0c/src/client/mugshots/MugshotUrlIterable.ts#L37)*
 
 **Parameters:**
 
@@ -60,7 +60,7 @@ ___
 
 ▸ **MugshotUrlIterable**(page: *`Page`*, county: *[County](../interfaces/_client_types_county_.county.md)*): `Promise`<`object`>
 
-*Defined in [client/mugshots/MugshotUrlIterable.ts:50](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/mugshots/MugshotUrlIterable.ts#L50)*
+*Defined in [client/mugshots/MugshotUrlIterable.ts:50](https://github.com/agaricide/mugshots-client/blob/101dc0c/src/client/mugshots/MugshotUrlIterable.ts#L50)*
 
 **Parameters:**
 
@@ -78,7 +78,7 @@ ___
 
 ▸ **MugshotUrlIterator**(page: *`Page`*, county: *[County](../interfaces/_client_types_county_.county.md)*): `Promise`<`AsyncIterableIterator`<`string`>>
 
-*Defined in [client/mugshots/MugshotUrlIterable.ts:23](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/mugshots/MugshotUrlIterable.ts#L23)*
+*Defined in [client/mugshots/MugshotUrlIterable.ts:23](https://github.com/agaricide/mugshots-client/blob/101dc0c/src/client/mugshots/MugshotUrlIterable.ts#L23)*
 
 **Parameters:**
 
@@ -96,7 +96,7 @@ ___
 
 ▸ **is404**(page: *`Page`*): `Promise`<`boolean`>
 
-*Defined in [client/mugshots/MugshotUrlIterable.ts:18](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/mugshots/MugshotUrlIterable.ts#L18)*
+*Defined in [client/mugshots/MugshotUrlIterable.ts:18](https://github.com/agaricide/mugshots-client/blob/101dc0c/src/client/mugshots/MugshotUrlIterable.ts#L18)*
 
 **Parameters:**
 
@@ -113,7 +113,7 @@ ___
 
 ▸ **scrapeMugshotUrls**(page: *`Page`*): `Promise`<`string`[]>
 
-*Defined in [client/mugshots/MugshotUrlIterable.ts:4](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/mugshots/MugshotUrlIterable.ts#L4)*
+*Defined in [client/mugshots/MugshotUrlIterable.ts:4](https://github.com/agaricide/mugshots-client/blob/101dc0c/src/client/mugshots/MugshotUrlIterable.ts#L4)*
 
 **Parameters:**
 
@@ -130,7 +130,7 @@ ___
 
 ▸ **scrapeNextCountyPage**(page: *`Page`*): `Promise`<`string`>
 
-*Defined in [client/mugshots/MugshotUrlIterable.ts:11](https://github.com/agaricide/mugshots-client/blob/63bcee9/src/client/mugshots/MugshotUrlIterable.ts#L11)*
+*Defined in [client/mugshots/MugshotUrlIterable.ts:11](https://github.com/agaricide/mugshots-client/blob/101dc0c/src/client/mugshots/MugshotUrlIterable.ts#L11)*
 
 **Parameters:**
 
