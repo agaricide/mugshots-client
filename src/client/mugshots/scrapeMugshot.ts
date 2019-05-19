@@ -84,7 +84,9 @@ export async function scrapeMugshot(page: Page, url: string): Promise<Mugshot> {
     || table['offense description']
     || chargeList[0];
 
+  const race = fields['race'] || null;
+
   const age = fields['age'] ? parseInt(fields['age'], 10) : -1;
 
-  return { url, name, imgUrl, age, charge, city, state };
+  return { url, name, imgUrl, age, charge, city, state, race };
 }

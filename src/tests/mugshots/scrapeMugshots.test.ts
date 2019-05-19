@@ -43,6 +43,7 @@ describe('scrapeMugshot', () => {
     expect(mugshot.charge).toBe(test.expected.charge);
     expect(mugshot.city).toBe(test.expected.city);
     expect(mugshot.state).toBe(test.expected.state);
+    expect(mugshot.race).toBe(test.expected.race);
     done();
   });
 
@@ -57,6 +58,7 @@ describe('scrapeMugshot', () => {
     expect(mugshot.charge).toBe(test.expected.charge);
     expect(mugshot.city).toBe(test.expected.city);
     expect(mugshot.state).toBe(test.expected.state);
+    expect(mugshot.race).toBe(test.expected.race);
     done();
   });
 
@@ -71,6 +73,7 @@ describe('scrapeMugshot', () => {
     expect(mugshot.charge).toBe(test.expected.charge);
     expect(mugshot.city).toBe(test.expected.city);
     expect(mugshot.state).toBe(test.expected.state);
+    expect(mugshot.race).toBe(test.expected.race);
     done();
   });
 
@@ -85,6 +88,7 @@ describe('scrapeMugshot', () => {
     expect(mugshot.charge).toBe(test.expected.charge);
     expect(mugshot.city).toBe(test.expected.city);
     expect(mugshot.state).toBe(test.expected.state);
+    expect(mugshot.race).toBe(test.expected.race);
     done();
   });
   
@@ -99,6 +103,7 @@ describe('scrapeMugshot', () => {
     expect(mugshot.charge).toBe(test.expected.charge);
     expect(mugshot.city).toBe(test.expected.city);
     expect(mugshot.state).toBe(test.expected.state);
+    expect(mugshot.race).toBe(test.expected.race);
     done();
   });
 
@@ -113,6 +118,7 @@ describe('scrapeMugshot', () => {
     expect(mugshot.charge).toBe(test.expected.charge);
     expect(mugshot.city).toBe(test.expected.city);
     expect(mugshot.state).toBe(test.expected.state);
+    expect(mugshot.race).toBe(test.expected.race);
     done();
   });
 });

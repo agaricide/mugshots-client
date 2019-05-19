@@ -7,4 +7,5 @@ export interface Mugshot {
   city?: string;
   county?: string;
   url: string;
+  race?: string;
 }
