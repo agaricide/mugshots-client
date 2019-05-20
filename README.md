@@ -22,7 +22,7 @@ Unofficial Node.js client for [mugshots.com](https://mugshots.com/).  Exposes bo
 `const { MugshotStream } = require('mugshots-client');`
 
 ### API
-#### [Readable Stream API](https://github.com/agaricide/mugshots-client/blob/master/example/stream.ts)
+#### [Readable Stream API](https://github.com/agaricide/mugshots-client/blob/master/examples/stream.ts)
 
 ```ts
 import { MugshotStream, Mugshot } from 'mugshots-client';
@@ -45,7 +45,7 @@ import { MugshotStream, Mugshot } from 'mugshots-client';
 })();
 ```
 
-#### [Async Iterator API](https://github.com/agaricide/mugshots-client/blob/master/example/iterables.ts)
+#### [Async Iterator API](https://github.com/agaricide/mugshots-client/blob/master/examples/iterables.ts)
 
 ```ts
 import * as puppeteer from 'puppeteer';
