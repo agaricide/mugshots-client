@@ -22,7 +22,7 @@ Unofficial Node.js client for [mugshots.com](https://mugshots.com/).  Exposes bo
 `const { MugshotStream } = require('mugshots-client');`
 
 ### API
-#### [Readable Stream API](https://github.com/agaricide/mugshots-client/blob/master/example/stream.ts):
+#### [Readable Stream API](https://github.com/agaricide/mugshots-client/blob/master/example/stream.ts)
 
 ```ts
 import { MugshotStream, Mugshot } from 'mugshots-client';
