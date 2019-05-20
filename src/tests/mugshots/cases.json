@@ -8,7 +8,8 @@
         "age": 57,
         "charge": "O2602 OBSENITY-GM-INDECENT EXPOSURE-TO ADULT",
         "city": "Sherburne County",
-        "state": "MN"
+        "state": "MN",
+        "race": "White"
       }
     },
     {
@@ -19,7 +20,8 @@
         "age": 28,
         "charge": "Rape 2nd degree",
         "city": "Autauga County",
-        "state": "AL"     
+        "state": "AL",  
+        "race": "Black"
       }
     },
     {
@@ -30,7 +32,8 @@
         "age": -1,
         "charge": "Resisting/Interfering w/Arrest",
         "city": "Iron County",
-        "state": "UT"     
+        "state": "UT",
+        "race": null
       }
     },
     {
@@ -42,7 +45,8 @@
         "DOB": "10/20/1990",
         "charge": "FE-FAILURE TO REGISTER AS PREDATORY OFFENDER",
         "city": "Sherburne County",
-        "state": "MN"     
+        "state": "MN",
+        "race": null
       }
     },
     {
@@ -50,10 +54,11 @@
       "expected": {
         "name": "Cody Alan Payton",
         "imgUrl": "https://thumbs.mugshots.com/gallery/images/fa/d5/Cody-Alan-Payton-mugshot-46578846.400x800.jpg",
-        "age":28,
+        "age": 28,
         "charge": "AGGRAVATED CHILD ABUSE - 2 COUNTS",
         "city": "Franklin County",
-        "state": "AL"     
+        "state": "AL",
+        "race": "WHITE"
       }
     },
     {
@@ -64,7 +69,8 @@
         "age": 55,
         "charge": "ATTEMPTED INDECENCY WITH A CHILD",
         "city": "Lincoln County",
-        "state": "NM"     
+        "state": "NM",
+        "race": "Caucasian"
       }
     }
   ]

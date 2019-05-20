@@ -7,7 +7,11 @@ Unofficial Node.js client for [mugshots.com](https://mugshots.com/).  Exposes bo
 
 ## Usage
 
-### Importing
+### Install
+
+`npm i mugshots-client --s`
+
+### Import
 #### Typescript
 
 `import { MugshotStream, Mugshot } from 'mugshots-client';`
@@ -18,9 +22,7 @@ Unofficial Node.js client for [mugshots.com](https://mugshots.com/).  Exposes bo
 `const { MugshotStream } = require('mugshots-client');`
 
 ### API
-#### Stream API
-
-Console.log mugshot data using the [Readable Stream API](https://github.com/agaricide/mugshots-client/blob/master/example/stream.ts):
+#### [Readable Stream API](https://github.com/agaricide/mugshots-client/blob/master/example/stream.ts)
 
 ```ts
 import { MugshotStream, Mugshot } from 'mugshots-client';
@@ -43,9 +45,7 @@ import { MugshotStream, Mugshot } from 'mugshots-client';
 })();
 ```
 
-#### Async Iterator API
-
-Console.log mugshot data using the [Async Iterator API](https://github.com/agaricide/mugshots-client/blob/master/example/iterables.ts):
+#### [Async Iterator API](https://github.com/agaricide/mugshots-client/blob/master/example/iterables.ts)
 
 ```ts
 import * as puppeteer from 'puppeteer';
@@ -69,9 +69,25 @@ import { CountyIterable, MugshotUrlChunkIterable, scrapeMugshots, PagePool, Mugs
 
 ## Docs
 
-##### [MugshotStream](docs/modules/_client_mugshots_mugshotstream_.md)
-##### [PagePool](docs/modules/_client_utils_pagepool_.md)
-##### [CountyIterable](docs/modules/_client_counties_countyiterable_.md)
-##### [MugshotUrlIterable](docs/modules/_client_mugshots_mugshoturliterable_.md)
-##### [scrapeMugshot](docs/modules/_client_mugshots_scrapemugshot_.md)
-##### [scrapeMugshots](docs/modules/_client_mugshots_scrapemugshots_.md)
+##### [MugshotStream](https://github.com/agaricide/mugshots-client/blob/master/docs/modules/_client_mugshots_mugshotstream_.md)
+##### [PagePool](https://github.com/agaricide/mugshots-client/blob/master/docs/modules/_client_utils_pagepool_.md)
+##### [CountyIterable](https://github.com/agaricide/mugshots-client/blob/master/docs/modules/_client_counties_countyiterable_.md)
+##### [MugshotUrlIterable](https://github.com/agaricide/mugshots-client/blob/master/docs/modules/_client_mugshots_mugshoturliterable_.md)
+##### [scrapeMugshot](https://github.com/agaricide/mugshots-client/blob/master/docs/modules/_client_mugshots_scrapemugshot_.md)
+##### [scrapeMugshots](https://github.com/agaricide/mugshots-client/blob/master/docs/modules/_client_mugshots_scrapemugshots_.md)
+
+### FAQ
+
+#### Why'd you make this? Isn't www.mugshots.com immoral?
+
+My goals are to:
+1.  Subvert mugshots.com by making the watermarked records they re-publish from the public domain freely available for anyone to use
+2.  Bring attention to the moral implications for open records on the internet
+    - More on NPR's Planet Money podcast, [Episode 878: Mugshots For Sale](https://www.npr.org/sections/money/2018/11/23/670149449/episode-878-mugshots-for-sale)
+3.  Use this library for inequality and social justice research
+
+#### Why'd you use [Puppeteer](https://github.com/GoogleChrome/puppeteer)?  Isn't [cheerio](https://github.com/cheeriojs/cheerio) faster & doesn't it use less resources?
+
+I chose Puppeteer to provide a path forward for obscuring scraping, to future-proof this software against censorship or TOS changes.
+
+[Here](https://intoli.com/blog/making-chrome-headless-undetectable/) is an article on making headless Chrome undetectable. My goal is to provide an API for making an undetectable scraper. It will be impossible to detect scraping if we manipulate the Chrome browser's behavior and properties to mimic a human user's browser.
