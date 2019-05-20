@@ -88,6 +88,6 @@ My goals are to:
 
 #### Why'd you use [Puppeteer](https://github.com/GoogleChrome/puppeteer)?  Isn't [cheerio](https://github.com/cheeriojs/cheerio) faster & doesn't it use less resources?
 
-I chose Puppeteer to provide a path forward for obscuring scraping.  To future-proof this software against censorship or TOS changes.
+I chose Puppeteer to provide a path forward for obscuring scraping, to future-proof this software against censorship or TOS changes.
 
 [Here](https://intoli.com/blog/making-chrome-headless-undetectable/) is an article on making headless Chrome undetectable. My goal is to provide an API for making an undetectable scraper. It will be impossible to detect scraping if we manipulate the Chrome browser's behavior and properties to mimic a human user's browser.
