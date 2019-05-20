@@ -75,3 +75,19 @@ import { CountyIterable, MugshotUrlChunkIterable, scrapeMugshots, PagePool, Mugs
 ##### [MugshotUrlIterable](https://github.com/agaricide/mugshots-client/blob/master/docs/modules/_client_mugshots_mugshoturliterable_.md)
 ##### [scrapeMugshot](https://github.com/agaricide/mugshots-client/blob/master/docs/modules/_client_mugshots_scrapemugshot_.md)
 ##### [scrapeMugshots](https://github.com/agaricide/mugshots-client/blob/master/docs/modules/_client_mugshots_scrapemugshots_.md)
+
+### FAQ
+
+#### Why'd you make this? Isn't www.mugshots.com immoral?
+
+My goals are to:
+1.  Subvert mugshots.com by making the watermarked records they re-publish from the public domain freely available for anyone to use
+2.  Bring attention to the moral implications for open records on the internet
+    - More on NPR's Planet Money podcast, [Episode 878: Mugshots For Sale](https://www.npr.org/sections/money/2018/11/23/670149449/episode-878-mugshots-for-sale)
+3.  Use this library for inequality and social justice research
+
+#### Why'd you use [Puppeteer](https://github.com/GoogleChrome/puppeteer)?  Isn't [cheerio](https://github.com/cheeriojs/cheerio) faster & doesn't it use less resources?
+
+I chose Puppeteer to provide a path forward for obscuring scraping.  To future-proof this software against censorship or TOS changes.
+
+[Here](https://intoli.com/blog/making-chrome-headless-undetectable/) is an article on making headless Chrome undetectable. My goal is to provide an API for making an undetectable scraper. It will be impossible to detect scraping if we manipulate the Chrome browser's behavior and properties to mimic a human user's browser.
