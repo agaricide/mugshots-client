@@ -49,7 +49,13 @@ import { MugshotStream, Mugshot } from 'mugshots-client';
 
 ```ts
 import * as puppeteer from 'puppeteer';
-import { CountyIterable, MugshotUrlChunkIterable, scrapeMugshots, PagePool, Mugshot } from 'mugshots-client';
+import {
+  CountyIterable,
+  MugshotUrlChunkIterable,
+  scrapeMugshots,
+  PagePool,
+  Mugshot
+} from 'mugshots-client';
 
 (async () => {
   const browser = await puppeteer.launch();
