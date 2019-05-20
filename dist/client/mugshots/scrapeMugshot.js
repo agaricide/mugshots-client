@@ -81,8 +81,9 @@ function scrapeMugshot(page, url) {
             || table['description']
             || table['offense description']
             || chargeList[0];
+        const race = fields['race'] || null;
         const age = fields['age'] ? parseInt(fields['age'], 10) : -1;
-        return { url, name, imgUrl, age, charge, city, state };
+        return { url, name, imgUrl, age, charge, city, state, race };
     });
 }
 exports.scrapeMugshot = scrapeMugshot;
