@@ -7,6 +7,10 @@ Unofficial Node.js client for [mugshots.com](https://mugshots.com/).  Exposes bo
 
 ## Usage
 
+### Installing
+
+`npm i mugshots-client --s`
+
 ### Importing
 #### Typescript
 
@@ -18,9 +22,7 @@ Unofficial Node.js client for [mugshots.com](https://mugshots.com/).  Exposes bo
 `const { MugshotStream } = require('mugshots-client');`
 
 ### API
-#### Stream API
-
-Console.log mugshot data using the [Readable Stream API](https://github.com/agaricide/mugshots-client/blob/master/example/stream.ts):
+#### [Readable Stream API](https://github.com/agaricide/mugshots-client/blob/master/example/stream.ts):
 
 ```ts
 import { MugshotStream, Mugshot } from 'mugshots-client';
@@ -43,9 +45,7 @@ import { MugshotStream, Mugshot } from 'mugshots-client';
 })();
 ```
 
-#### Async Iterator API
-
-Console.log mugshot data using the [Async Iterator API](https://github.com/agaricide/mugshots-client/blob/master/example/iterables.ts):
+#### [Async Iterator API](https://github.com/agaricide/mugshots-client/blob/master/example/iterables.ts)
 
 ```ts
 import * as puppeteer from 'puppeteer';
@@ -69,9 +69,9 @@ import { CountyIterable, MugshotUrlChunkIterable, scrapeMugshots, PagePool, Mugs
 
 ## Docs
 
-##### [MugshotStream](docs/modules/_client_mugshots_mugshotstream_.md)
-##### [PagePool](docs/modules/_client_utils_pagepool_.md)
-##### [CountyIterable](docs/modules/_client_counties_countyiterable_.md)
-##### [MugshotUrlIterable](docs/modules/_client_mugshots_mugshoturliterable_.md)
-##### [scrapeMugshot](docs/modules/_client_mugshots_scrapemugshot_.md)
-##### [scrapeMugshots](docs/modules/_client_mugshots_scrapemugshots_.md)
+##### [MugshotStream](https://github.com/agaricide/mugshots-client/blob/master/docs/modules/_client_mugshots_mugshotstream_.md)
+##### [PagePool](https://github.com/agaricide/mugshots-client/blob/master/docs/modules/_client_utils_pagepool_.md)
+##### [CountyIterable](https://github.com/agaricide/mugshots-client/blob/master/docs/modules/_client_counties_countyiterable_.md)
+##### [MugshotUrlIterable](https://github.com/agaricide/mugshots-client/blob/master/docs/modules/_client_mugshots_mugshoturliterable_.md)
+##### [scrapeMugshot](https://github.com/agaricide/mugshots-client/blob/master/docs/modules/_client_mugshots_scrapemugshot_.md)
+##### [scrapeMugshots](https://github.com/agaricide/mugshots-client/blob/master/docs/modules/_client_mugshots_scrapemugshots_.md)
