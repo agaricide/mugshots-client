@@ -7,11 +7,11 @@ Unofficial Node.js client for [mugshots.com](https://mugshots.com/).  Exposes bo
 
 ## Usage
 
-### Installing
+### Install
 
 `npm i mugshots-client --s`
 
-### Importing
+### Import
 #### Typescript
 
 `import { MugshotStream, Mugshot } from 'mugshots-client';`
