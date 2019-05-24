@@ -9,10 +9,11 @@ const scrapeMugshotUrls = (page: Page) => page.evaluate(() => {
 });
 
 const scrapeNextCountyPage = (page: Page) => page.evaluate(() => {
+  const { protocol, host, pathname } = location;
   const next = document.querySelector('a.next.page');
   if (!next) return '';
   const nextHref = next.getAttribute('href');
-  return `${location.protocol}//${location.host}${location.pathname}${nextHref}`;
+  return `${protocol}//${host}${pathname}${nextHref}`;
 });
 
 const is404 = (page: Page) => page.evaluate(() => {
