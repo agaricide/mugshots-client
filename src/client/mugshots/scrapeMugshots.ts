@@ -15,10 +15,14 @@ export async function scrapeMugshots(pagePool: Pool<Page>, urls: string[], opts:
   const mugshots = urls
     .slice(0, options.maxChunkSize)
     .map(async (url) => {
-      const page = await pagePool.acquire();
-      const mugshot = await scrapeMugshot(page, url);
-      pagePool.release(page);
-      return mugshot;
+      let page;
+      try {
+        page = await pagePool.acquire();
+        const mugshot = await scrapeMugshot(page, url);
+        return mugshot;
+      } finally {
+        pagePool.release(page);
+      }
     });
 
   return Promise.all(mugshots);
