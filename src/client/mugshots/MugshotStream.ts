@@ -9,14 +9,39 @@ import { County } from '../types/County';
 
 const MugshotStream = async (options: PoolOptions & ScrapeOptions = {}) => {
   let county: IteratorResult<County>;
-  let urls: IteratorResult<string[]>;
-  let mugshotIterator: AsyncIterableIterator<string[]>;
+  let chunk: IteratorResult<string[]>;
+  let chunkIterator: AsyncIterableIterator<string[]>;
   const browser = await launch();
   const pagePool = PagePool(browser, { max: 10, ...options });
   const page = await pagePool.acquire();
   const counties = await CountyIterator(page);
   county = await counties.next();
-  mugshotIterator = await MugshotUrlChunkIterator(page, county.value);
+  chunkIterator = await MugshotUrlChunkIterator(page, county.value);
+
+  const read = async function () {
+    console.log("Reading!");
+    try {
+      if (!chunk || !chunk.done) {
+        chunk = await chunkIterator.next();
+      }
+
+      if (chunk.done && !county.done) {
+        county = await counties.next();
+        chunkIterator = await MugshotUrlChunkIterator(page, county.value);
+        chunk = await chunkIterator.next();
+      }
+
+      if (chunk.done && county.done) {
+        return false;
+      }
+
+      const mugshots = await scrapeMugshots(pagePool, chunk.value, options);
+      this.push(mugshots);
+    } catch (error) {
+      this.emit('error', error);
+      this.push([]);
+    }
+  };
 
   const destroy = async function (error: Error | null, callback: Function) {
     try {
@@ -28,30 +53,8 @@ const MugshotStream = async (options: PoolOptions & ScrapeOptions = {}) => {
     }
   };
 
-  const read = async function () {
-    try {
-      if (!urls || !urls.done) {
-        urls = await mugshotIterator.next();
-      }
-
-      if (urls.done && !county.done) {
-        county = await counties.next();
-        mugshotIterator = await MugshotUrlChunkIterator(page, county.value);
-        urls = await mugshotIterator.next();
-      }
-
-      if (urls.done && county.done) {
-        return false;
-      }
-
-      const mugshots = await scrapeMugshots(pagePool, urls.value, options);
-      this.push(mugshots);
-    } catch (error) {
-      this.emit('error', error);
-      this.push([]);
-    }
-  };
-
+  console.log("Reading!");
+  
   return new Readable({
     objectMode: true,
     destroy,
