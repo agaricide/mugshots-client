@@ -60,9 +60,20 @@ const getCounties = async (page: Page, state: State): Promise<County[]> => {
   }, []);
 };
 
-const CountyIterator = async (page: Page) => {
-  const states = await getStates(page);
-  return async function*() {
+const startFromState = (stateName: string) => {
+  let hasSeenState = false;
+  return (state: State): boolean => {
+    if (state.name === stateName) hasSeenState = true;
+    return hasSeenState;
+  }
+};
+
+const CountyIterator = async (page: Page, startFrom?: County) => {
+  const states = (startFrom)
+    ? await getStates(page)
+    : (await getStates(page)).filter(startFromState(startFrom.state));
+
+  return async function* () {
     for (const state of states) {
       const counties = await getCounties(page, state);
       for (const county of counties) {
