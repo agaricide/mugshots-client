@@ -75,9 +75,8 @@ const startFromState = (stateName: string, states: State[]): State[] => {
 }
 
 const CountyIterator = async (page: Page, startFrom?: County) => {
-  const states = (startFrom)
-    ? await getStates(page)
-    : await getStates(page).then(states => startFromState(startFrom.state, states));
+  const states = await getStates(page)
+    .then(states => startFromState(startFrom.state, states));
 
   return async function* () {
     for (const state of states) {
