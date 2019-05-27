@@ -68,19 +68,29 @@ const _startFromState = (stateName: string) => {
   }
 };
 
-const startFromState = (stateName: string, states: State[]): State[] => {
-  if (!stateName) states;
-  const index = states.findIndex(state => state.name === stateName);
+const startFromState = (states: State[], startFrom?: County): State[] => {
+  if (!startFrom) return states;
+  const index = states.findIndex(state => state.name === startFrom.state);
+  if (index === -1) return states;
   return states.slice(index);
+}
+
+const startFromCounty = (counties: County[], startFrom?: County): County[] => {
+  if (!startFrom) return counties;
+  const index = counties.findIndex(county => county.name === startFrom.name);
+  if (index === -1) return counties;
+  return counties.slice(index);
 }
 
 const CountyIterator = async (page: Page, startFrom?: County) => {
   const states = await getStates(page)
-    .then(states => startFromState(startFrom.state, states));
+    .then(states => startFromState(states, startFrom));
 
   return async function* () {
     for (const state of states) {
-      const counties = await getCounties(page, state);
+      const counties = await getCounties(page, state)
+        .then(counties => startFromCounty(counties, startFrom));
+
       for (const county of counties) {
         yield county;
       }
@@ -88,8 +98,8 @@ const CountyIterator = async (page: Page, startFrom?: County) => {
   }();
 };
 
-const CountyIterable = async (page: Page) => {
-  const countyIterator = await CountyIterator(page);
+const CountyIterable = async (page: Page,  startFrom?: County) => {
+  const countyIterator = await CountyIterator(page, startFrom);
   return {
     [Symbol.asyncIterator]: () => countyIterator
   };
