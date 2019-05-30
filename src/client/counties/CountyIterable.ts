@@ -44,9 +44,7 @@ const scrapeStateHrefs = (page: Page): Promise<string[]> => {
 const getStates = async (page: Page): Promise<State[]> => {
   await page.goto(`${ORIGIN}/US-States/`);
   const hrefs = await scrapeStateHrefs(page);
-  return hrefs
-    .map(toState)
-    .filter(state => state.name);
+  return hrefs.map(toState).filter(state => state.name);
 };
 
 const getCounties = async (page: Page, state: State): Promise<County[]> => {
@@ -60,52 +58,30 @@ const getCounties = async (page: Page, state: State): Promise<County[]> => {
   }, []);
 };
 
-const _startFromState = (stateName: string) => {
-  let hasSeenState = false;
-  return (state: State): boolean => {
-    if (state.name === stateName) hasSeenState = true;
-    return hasSeenState;
-  }
+const startFrom = <T extends State | County>(models: T[], start?: County): T[] => {
+  if (!start) return models;
+  const index = models.findIndex(model => model.name === start.state);
+  if (index === -1) return models;
+  return models.slice(index);
 };
 
-const startFromState = (states: State[], startFrom?: County): State[] => {
-  if (!startFrom) return states;
-  const index = states.findIndex(state => state.name === startFrom.state);
-  if (index === -1) return states;
-  return states.slice(index);
-}
-
-const startFromCounty = (counties: County[], startFrom?: County): County[] => {
-  if (!startFrom) return counties;
-  const index = counties.findIndex(county => county.name === startFrom.name);
-  if (index === -1) return counties;
-  return counties.slice(index);
-}
-
-const CountyIterator = async (page: Page, startFrom?: County) => {
-  const states = await getStates(page)
-    .then(states => startFromState(states, startFrom));
-
-  return async function* () {
-    for (const state of states) {
-      const counties = await getCounties(page, state)
-        .then(counties => startFromCounty(counties, startFrom));
-
-      for (const county of counties) {
+const CountyIterator = async (page: Page, start?: County) => {
+  const states = await getStates(page);
+  return (async function*() {
+    for (const state of startFrom(states, start)) {
+      const counties = await getCounties(page, state);
+      for (const county of startFrom(counties, start)) {
         yield county;
       }
     }
-  }();
+  })();
 };
 
-const CountyIterable = async (page: Page,  startFrom?: County) => {
+const CountyIterable = async (page: Page, startFrom?: County) => {
   const countyIterator = await CountyIterator(page, startFrom);
   return {
     [Symbol.asyncIterator]: () => countyIterator
   };
 };
 
-export {
-  CountyIterator,
-  CountyIterable
-};
+export { CountyIterator, CountyIterable };
