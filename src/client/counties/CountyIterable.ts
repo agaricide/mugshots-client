@@ -58,11 +58,11 @@ const getCounties = async (page: Page, state: State): Promise<County[]> => {
   }, []);
 };
 
-const startFrom = <T extends State | County>(models: T[], start?: County): T[] => {
-  if (!start) return models;
-  const index = models.findIndex(model => model.name === start.state);
-  if (index === -1) return models;
-  return models.slice(index);
+const startFrom = <T extends State | County>(records: T[], start?: County): T[] => {
+  if (!start) return records;
+  const index = records.findIndex(record => record.name === start.state);
+  if (index === -1) return records;
+  return records.slice(index);
 };
 
 const CountyIterator = async (page: Page, start?: County) => {
