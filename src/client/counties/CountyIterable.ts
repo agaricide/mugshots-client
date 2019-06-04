@@ -24,18 +24,20 @@ const scrapeStateHrefs = (page: Page): Promise<string[]> => {
 const getStates = async (page: Page): Promise<State[]> => {
   await page.goto(`${origin}/US-States/`);
   const hrefs = await scrapeStateHrefs(page);
-  return hrefs.map(parseState).filter(state => state.name);
+  return hrefs.map(href => parseState({ href, origin })).filter(state => state.name);
 };
 
 const getCounties = async (page: Page, state: State): Promise<County[]> => {
   await page.goto(state.url);
   const hrefs = await scrapeCountyHrefs(page);
 
-  return hrefs.reduce((results: County[], href: string) => {
-    const county = parseCounty({ href, origin });
-    if (county) results.push(county);
-    return results;
-  }, []);
+  return hrefs
+    .map(href => parseCounty({ href, origin }))
+    .filter(county => county)
+    .reduce((results, county) => {
+      results.push(county);
+      return results;
+    }, []);
 };
 
 const CountyIterator = async (page: Page, startFrom?: County) => {
