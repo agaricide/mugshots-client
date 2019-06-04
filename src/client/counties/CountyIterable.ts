@@ -1,31 +1,11 @@
 import { Page } from 'puppeteer';
 import { County } from '../types/County';
 import { State } from '../types/State';
+import { startFromState, startFromCounty } from './utils/startFrom';
+import parseCounty from './utils/parseCounty';
+import parseState from './utils/parseState';
 
-const ORIGIN = 'https://mugshots.com';
-
-const toCounty = (path: string): County | null => {
-  const split = path.split('/');
-
-  if (split.length < 4) return null;
-
-  return {
-    state: format(split[2]),
-    name: format(split[3]),
-    url: ORIGIN + path
-  };
-};
-
-const toState = (path: string): State => {
-  return {
-    name: path.split('/')[2],
-    url: ORIGIN + path
-  };
-};
-
-const format = (str: string): string => {
-  return str.replace(/-/g, ' ');
-};
+const origin = 'https://mugshots.com';
 
 const scrapeCountyHrefs = (page: Page): Promise<string[]> => {
   return page.evaluate(() => {
@@ -42,44 +22,41 @@ const scrapeStateHrefs = (page: Page): Promise<string[]> => {
 };
 
 const getStates = async (page: Page): Promise<State[]> => {
-  await page.goto(`${ORIGIN}/US-States/`);
+  await page.goto(`${origin}/US-States/`);
   const hrefs = await scrapeStateHrefs(page);
-  return hrefs
-    .map(toState)
-    .filter(state => state.name);
+  return hrefs.map(href => parseState({ href, origin })).filter(state => state.name);
 };
 
 const getCounties = async (page: Page, state: State): Promise<County[]> => {
   await page.goto(state.url);
   const hrefs = await scrapeCountyHrefs(page);
 
-  return hrefs.reduce((results: County[], path: string) => {
-    const county = toCounty(path);
-    if (county) results.push(county);
-    return results;
-  }, []);
+  return hrefs
+    .map(href => parseCounty({ href, origin }))
+    .filter(county => county)
+    .reduce((results, county) => {
+      results.push(county);
+      return results;
+    }, []);
 };
 
-const CountyIterator = async (page: Page) => {
+const CountyIterator = async (page: Page, startFrom?: County) => {
   const states = await getStates(page);
-  return async function*() {
-    for (const state of states) {
+  return (async function*() {
+    for (const state of startFromState(states, startFrom)) {
       const counties = await getCounties(page, state);
-      for (const county of counties) {
+      for (const county of startFromCounty(counties, startFrom)) {
         yield county;
       }
     }
-  }();
+  })();
 };
 
-const CountyIterable = async (page: Page) => {
-  const countyIterator = await CountyIterator(page);
+const CountyIterable = async (page: Page, startFrom?: County) => {
+  const countyIterator = await CountyIterator(page, startFrom);
   return {
     [Symbol.asyncIterator]: () => countyIterator
   };
 };
 
-export {
-  CountyIterator,
-  CountyIterable
-};
+export { CountyIterator, CountyIterable };
