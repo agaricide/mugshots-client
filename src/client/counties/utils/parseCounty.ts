@@ -1,8 +1,6 @@
 import { County } from '../../types/County';
 
-const format = (str: string): string => {
-  return str.replace(/-/g, ' ');
-};
+const format = (str: string): string => str.replace(/-/g, ' ');
 
 const parseCounty = ({ href = '', origin = '' }): County | null => {
   const split = href.split('/');

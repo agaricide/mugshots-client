@@ -1,6 +1,7 @@
 import { Page } from 'puppeteer';
 import { County } from '../types/County';
 import { State } from '../types/State';
+import { startFromState, startFromCounty } from './utils/startFrom';
 import parseCounty from './utils/parseCounty';
 import parseState from './utils/parseState';
 
@@ -37,19 +38,12 @@ const getCounties = async (page: Page, state: State): Promise<County[]> => {
   }, []);
 };
 
-const startFrom = <T extends State | County>(records: T[], start?: County): T[] => {
-  if (!start) return records;
-  const index = records.findIndex(record => record.name === start.state);
-  if (index === -1) return records;
-  return records.slice(index);
-};
-
-const CountyIterator = async (page: Page, start?: County) => {
+const CountyIterator = async (page: Page, startFrom?: County) => {
   const states = await getStates(page);
   return (async function*() {
-    for (const state of startFrom(states, start)) {
+    for (const state of startFromState(states, startFrom)) {
       const counties = await getCounties(page, state);
-      for (const county of startFrom(counties, start)) {
+      for (const county of startFromCounty(counties, startFrom)) {
         yield county;
       }
     }
