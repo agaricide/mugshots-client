@@ -6,23 +6,26 @@ jest.setTimeout(15 * 1000);
 
 let browser: puppeteer.Browser;
 
-beforeAll(async (done) => {
+beforeAll(async done => {
   browser = await puppeteer.launch();
   done();
 });
 
-afterAll(async (done) => {
+afterAll(async done => {
   await browser.close();
   done();
 });
 
 describe('CountyIterable', () => {
-    it('is an async iterator that produces County objects', async (done) => {
-      const page = await browser.newPage();
-      const counties = await CountyIterable(page);
-      await page.close();
-      done();
-
-      expect(true).toBe(false);
-    });
+  it('is an async iterator that produces County objects', async done => {
+    const page = await browser.newPage();
+    const counties = await CountyIterable(page);
+    for await (const county of counties) {
+      expect(county).toBeTruthy();
+      expect(typeof county).toBe('object');
+      break;
+    }
+    await page.close();
+    done();
   });
+});

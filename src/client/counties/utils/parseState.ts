@@ -1,9 +1,9 @@
 import { State } from '../../types/State';
 
-const parseState = (path: string): State => {
+const parseState = ({ href = '', origin = '' }): State => {
   return {
-    name: path.split('/')[2],
-    url: origin + path
+    name: href.split('/')[2],
+    url: origin + href
   };
 };
 
