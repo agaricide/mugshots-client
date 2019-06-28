@@ -87,10 +87,10 @@ import {
 #### Why'd you make this? Isn't www.mugshots.com immoral?
 
 My goals are to:
-1.  Subvert mugshots.com by making the watermarked records they re-publish from the public domain freely available for anyone to use
-2.  Bring attention to the moral implications for open records on the internet
+1.  subvert mugshots.com by making the watermarked records they re-publish from the public domain freely available for anyone to use
+2.  bring attention to the moral implications for open records on the internet
     - More on NPR's Planet Money podcast, [Episode 878: Mugshots For Sale](https://www.npr.org/sections/money/2018/11/23/670149449/episode-878-mugshots-for-sale)
-3.  Use this library for inequality and social justice research
+3.  use this library for inequality and social justice research
 
 #### Why'd you use [Puppeteer](https://github.com/GoogleChrome/puppeteer)?  Isn't [cheerio](https://github.com/cheeriojs/cheerio) faster & doesn't it use less resources?
 
